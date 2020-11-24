@@ -1,0 +1,63 @@
+# MIG 2020 - MP1
+# Modele numero 1
+
+# Geometry and hydrogeology
+# -------------------------
+domain = 0,0 0.1,0 0.1,0.01 0,0.01 m
+darcy-velocity = 0.5 cm/hr
+dispersivity = 2.5 mm
+diffusion-coeff = 1e-9 m2/s
+porosity = 0.3
+
+zone sand {
+  geometry = rectangle 0.05,0.005,0.1,0.01 m, nodes = 50,1
+  geochem = sand
+}
+boundary injection {
+  coordinates = 0,0 0,0.01 m
+  transport-condition = flux using injection
+  modify at 5 h, transport-condition = flux using injection_base
+}
+
+# Geochemistry
+# ------------
+# unit injection {
+#   pH = 7
+#   tot Na[+] = 1 mmol/l
+#   tot Cs[+] = 1 umol/l
+#   tot T1(aq) = 1 umol/l
+#   tot Cl[-] = 1 mmol/l
+#   balance on Cl[-]
+# }
+unit injection_base {
+  pH = 7
+  # tot Na[+] = 1 mmol/l
+  # tot Cl[-] = 1 mmol/l
+}
+unit sand {
+  pH = 7
+  # tot Na[+] = 1 mmol/l
+  # tot Cl[-] = 1 mmol/l
+  mineral Sand = 8 kg/l
+}
+
+database = form_cig.tdb
+extend surface-sites Sand(Cs), logK = 2.5
+
+# Simulation parameters
+# ---------------------
+duration = 30 h
+timestep = variable {
+ start = 50 s
+ courant-factor = 3.5
+}
+ 
+# Output specifications
+# ---------------------
+output = col_modify
+output-format = res, vtk
+sample = 100
+ 
+select T1(aq) in umol/l
+# select aqueous{Cs[+]}, fixed{Cs[+]} in umol/l
+# select aqueous{Na[+]}, fixed{Na[+]} in umol/l

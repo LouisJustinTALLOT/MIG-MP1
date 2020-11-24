@@ -21,14 +21,14 @@ boundary injection {
 
 # Geochemistry
 # ------------
-# unit injection {
-#   pH = 7
+unit injection {
+  pH = 7
 #   tot Na[+] = 1 mmol/l
 #   tot Cs[+] = 1 umol/l
-#   tot T1(aq) = 1 umol/l
+  tot T1(aq) = 1 umol/l
 #   tot Cl[-] = 1 mmol/l
 #   balance on Cl[-]
-# }
+}
 unit injection_base {
   pH = 7
   # tot Na[+] = 1 mmol/l

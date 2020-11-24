@@ -3,50 +3,60 @@
 
 # Geometry and hydrogeology
 # -------------------------
-domain = 0,0 0.1,0 0.1,0.01 0,0.01 m
-darcy-velocity = 0.5 cm/hr
-dispersivity = 2.5 mm
-diffusion-coeff = 1e-9 m2/s
+# domain = 0,0 0.1,0 0.1,0.01 0,0.01 m
+domain = 0,0 10,0 10,10 0,10 m
+# darcy-velocity = 0.5 cm/hr
+# dispersivity = 2.5 mm
+# diffusion-coeff = 1e-9 m2/s
 porosity = 0.3
+permeability = 1e-5 m/s
+flow-regime = saturated, stationary
 
 zone sand {
-  geometry = rectangle 0.05,0.005,0.1,0.01 m, nodes = 50,1
-  geochem = sand
+  # geometry = rectangle 0.05,0.005,0.1,0.01 m, nodes = 50,1
+  geometry = rectangle 5,5 10,10 m, nodes = 50,1
+  geochem = chimie_sand
 }
-boundary injection {
-  coordinates = 0,0 0,0.01 m
-  transport-condition = flux using injection
-  modify at 5 h, transport-condition = flux using injection_base
+boundary left {
+  coordinates = 0,0 0,10 m
+  transport-condition = flux using left
+  # flow-condition = constant-flow at 0.5,0 m/y
+  flow-condition = constant-head at 2 m
+  # modify at 5 h, transport-condition = flux using injection_base
 }
+boundary right {
+  coordinates = 10,0 10,10 m
+  flow-condition = constant-head at 1 m
 
+}
 # Geochemistry
 # ------------
-unit injection {
-  pH = 7
-#   tot Na[+] = 1 mmol/l
-#   tot Cs[+] = 1 umol/l
+unit left {
+
   tot T1(aq) = 1 umol/l
-#   tot Cl[-] = 1 mmol/l
-#   balance on Cl[-]
+
 }
-unit injection_base {
-  pH = 7
-  # tot Na[+] = 1 mmol/l
-  # tot Cl[-] = 1 mmol/l
+unit right {
+
+  tot T1(aq) = 1 umol/l
+
 }
-unit sand {
+
+unit chimie_sand {
   pH = 7
-  # tot Na[+] = 1 mmol/l
-  # tot Cl[-] = 1 mmol/l
+
+  tot T2(aq) = 1 umol/l
   mineral Sand = 8 kg/l
 }
 
+define basis T2(aq)
+
 database = form_cig.tdb
-extend surface-sites Sand(Cs), logK = 2.5
+# extend surface-sites Sand(Cs), logK = 2.5
 
 # Simulation parameters
 # ---------------------
-duration = 30 h
+duration = 20 h
 timestep = variable {
  start = 50 s
  courant-factor = 3.5
@@ -54,10 +64,14 @@ timestep = variable {
  
 # Output specifications
 # ---------------------
-output = col_modify
+output = modele_1_no2
 output-format = res, vtk
-sample = 100
+sample = 20
  
 select T1(aq) in umol/l
+select T2(aq) in umol/l
+select x-flowrate in m/s
+
+
 # select aqueous{Cs[+]}, fixed{Cs[+]} in umol/l
 # select aqueous{Na[+]}, fixed{Na[+]} in umol/l

@@ -12,17 +12,19 @@ domain = 0,300 0,395 21,394 36,392 46,390 91,380 109,376 121,375 199,368 206,367
 # diffusion-coeff = 1e-9 m2/s
 porosity = 0.3
 permeability = 1e-5 m/s
-flow-regime = saturated, stationary
-nodes = 2000
+flow-regime = saturated, stationary 
+# nodes = 2000
+
 zone granite {
   # geometry = polygon 0,300 0,395 21,394 36,392 46,390 91,380 109,376 121,375 199,368 206,367 270,358 286,356 327,356 390,351 430,350 430,300 m, nodes = 100,20
-  geometry = polygon 0,300 0,395 21,394 36,392 46,390 46,358 121,358 121,375 199,368 206,367 270,358 286,356 327,356 390,351 430,350 430,300 m, nodes = 100,20
+  geometry = polygon 0,300 0,395 21,394 36,392 46,390 46,358 121,358 121,375 199,368 206,367 270,358 286,356 327,356 390,351 430,350 430,300 m , nodes = 100,20
   geochem = chimie_granite
 }
 
 zone residus {
-  geometry = polygon 46,358 46,390 91,380 109,376 121,375 121,358 m
-  # geometry = polygon 46,358 46,386 91,376 109,372 121,371 121,358 m
+  geometry = polygon 46,358 46,390 91,380 109,376 121,375 121,358 m, nodes = 20,5 overgrid = on # surface
+  # geometry = polygon 46,358 46,386 91,376 109,372 121,371 121,358 m # -4m
+
   geochem = chimie_residus
 }
 
@@ -77,7 +79,7 @@ timestep = variable {
  
 # Output specifications
 # ---------------------
-output = modele_4_no1
+output = modele_4_no3
 output-format = res, vtk
 sample = 100
  

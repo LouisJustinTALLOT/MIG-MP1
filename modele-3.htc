@@ -6,7 +6,7 @@
 # domain = 0,0 0.1,0 0.1,0.01 0,0.01 m
 # domain = 0,0 10,0 10,10 0,10 m 
 # domain = 0,0 10,0 10,5 0,7 
-domain = 0,300 0,395 21,394 36,3892 91,380 109,376 199,368 206,367 270,358 286,356 327,356 390,351 430,350 430,300 m
+domain = 0,300 0,395 21,394 36,392 91,380 109,376 199,368 206,367 270,358 286,356 327,356 390,351 430,350 430,300 m
 # darcy-velocity = 0.5 cm/hr
 # dispersivity = 2.5 mm
 # diffusion-coeff = 1e-9 m2/s
@@ -19,37 +19,33 @@ zone sand {
   # geometry = rectangle 5,5 10,10 m, nodes = 50,1
   # geometry = polygon 0,0 10,0 10,5 0,7, nodes = 50,50
   # geometry = polygon 0,300 0,395 21,394 36,3892 91,380 109,376 199,368 206,367 270,358 286,356 327,356 390,351 430,350 430,300 m
-  geometry = domain
+  # geometry = domain
+  geometry = polygon 0,300 0,395 21,394 36,392 91,380 109,376 199,368 206,367 270,358 286,356 327,356 390,351 430,350 430,300 m, nodes = 100,20
   geochem = chimie_sand
 }
 boundary left {
   coordinates = 0,300 0,395 m
   transport-condition = flux using left
-  # flow-condition = constant-flow at 0.5,0 m/y
-  flow-condition = constant-head at 3 m
+  flow-condition = constant-flow at 0.5,0 m/hr
+  # flow-condition = constant-head at 80 m
   # modify at 5 h, transport-condition = flux using injection_base
 }
 boundary right {
   coordinates = 430,300 430,350 m
-  flow-condition = constant-head at 1 m
+  # flow-condition = constant-head at 50 m
 
 }
 # Geochemistry
 # ------------
 unit left {
-
   tot T1(aq) = 1 umol/l
-
 }
 unit right {
-
   tot T1(aq) = 1 umol/l
-
 }
 
 unit chimie_sand {
   pH = 7
-
   tot T2(aq) = 1 umol/l
   mineral Sand = 8 kg/l
 }
@@ -61,17 +57,17 @@ database = form_cig.tdb
 
 # Simulation parameters
 # ---------------------
-duration = 20 h
-timestep = variable {
- start = 50 s
- courant-factor = 3.5
-}
+duration = 300 h
+# timestep = variable {
+#  start = 50 s
+#  # courant-factor = 3.5
+# }
  
 # Output specifications
 # ---------------------
-output = modele_3_no1
+output = modele_3_no3
 output-format = res, vtk
-sample = 50
+sample = 100
  
 select T1(aq) in umol/l
 select T2(aq) in umol/l

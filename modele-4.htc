@@ -22,7 +22,7 @@ zone granite {
 }
 
 zone residus {
-  geometry = polygon 46,358 46,390 91,380 109,376 121,375 121,358 m, nodes = 20,5 overgrid = on # surface
+  geometry = polygon 46,358 46,390 91,380 109,376 121,375 121,358 m, nodes = 20,5 overgrid = disabled  # surface
   # geometry = polygon 46,358 46,386 91,376 109,372 121,371 121,358 m # -4m
 
   geochem = chimie_residus

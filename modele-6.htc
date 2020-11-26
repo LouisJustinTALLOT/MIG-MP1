@@ -4,7 +4,7 @@
 # Geometry and hydrogeology
 # -------------------------
 
-domain = 0,300 0,395 10,394 21,394 36,392 46,390 91,380 109,376 121,375 199,368 206,367 270,358 286,356 327,356 390,351 430,350 430,300 m
+domain = 0,300 0,395 11,394 21,394 36,392 46,390 91,380 109,376 121,375 199,368 206,367 270,358 286,356 327,356 390,351 430,350 430,300 m
 #domain = 0,300 0,395 21,394 36,392 46,390 46,358 121,358 121,375 199,368 206,367 270,358 286,356 327,356 390,351 430,350 430,300 m
 
 # darcy-velocity = 0.5 cm/hr
@@ -17,7 +17,7 @@ flow-regime = saturated, stationary
 
 
 zone granite {
-  geometry = polygon 0,300 0,395 10,394 21,394 36,392 46,390 91,380 109,376 121,375 199,368 206,367 270,358 286,356 327,356 390,351 430,350 430,300 m, nodes = 200,100                 
+  geometry = polygon 0,300 0,395 11,394 21,394 36,392 46,390 91,380 109,376 121,375 199,368 206,367 270,358 286,356 327,356 390,351 430,350 430,300 m, nodes = 200,50                 
   # geometry = polygon 0,300 0,395 21,394 36,392 46,390 46,358 121,358 121,375 199,368 206,367 270,358 286,356 327,356 390,351 430,350 430,300 m , nodes = 304,62 overgrid = disabled  
   geochem = chimie_granite
 }
@@ -25,14 +25,14 @@ zone granite {
 zone residus {
   # geometry = polygon 46,358 46,390 91,380 109,376 121,375 121,358 m, nodes = 20,10 overgrid = disabled #, nodes = 53,24 overgrid = disabled  # surface
   # geometry = polygon 46,358 46,386 91,376 109,372 121,371 121,358 m, nodes = 200,50 overgrid = disabled # -4m
-  geometry = polygon 46,358 46,386 91,376 109,372 121,371 121,358 m, nodes = 20,10 overgrid = on #, nodes = 53,24 overgrid = disabled  # surface
+  geometry = polygon 46,358 46,386 91,376 109,372 121,371 121,358 m, nodes = 40,20 overgrid = on #, nodes = 53,24 overgrid = disabled  # surface
 
   geochem = chimie_residus
 }
 
 zone steriles {
   # permeability = 
-  geometry = polygon 0,395 10,394 21,394 36,392 46,390 91,380 109,376 121,375 199,368 206,367 270,358 286,356 327,356 390,351 430,350 430,346 390,347 327,352 286,352 270,354 206,363 199,364 121,371 109,372 91,372 46,386 36,388 21,390 10,390 0,391 m, nodes = 100,4 overgrid = enabled
+  geometry = polygon 0,391 0,395 11,394 21,394 36,392 46,390 91,380 109,376 121,375 199,368 206,367 270,358 286,356 327,356 390,351 430,350 430,346 390,347 327,352 286,352 270,354 206,363 199,364 121,371 109,372 91,372 46,386 36,388 21,390  m, nodes = 200,10  overgrid = on
 
   geochem = chimie_steriles
 }
@@ -90,7 +90,8 @@ database = form_cig.tdb
 # ---------------------
 duration = 1000 h
 timestep = variable {
- start = 50 s
+ # start = 50 s
+ start = 1 h
  # courant-factor = 3.5
 }
  

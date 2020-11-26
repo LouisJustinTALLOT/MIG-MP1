@@ -15,18 +15,28 @@ permeability = 1e-5 m/s
 flow-regime = saturated, stationary 
 # nodes = 2000
 
+
 zone granite {
-  # geometry = polygon 0,300 0,395 21,394 36,392 46,390 91,380 109,376 121,375 199,368 206,367 270,358 286,356 327,356 390,351 430,350 430,300 m, nodes = 100,20
-  geometry = polygon 0,300 0,395 21,394 36,392 46,390 46,358 121,358 121,375 199,368 206,367 270,358 286,356 327,356 390,351 430,350 430,300 m , nodes = 304,62 overgrid = disabled  
+  geometry = polygon 0,300 0,395 21,394 36,392 46,390 91,380 109,376 121,375 199,368 206,367 270,358 286,356 327,356 390,351 430,350 430,300 m, nodes = 200,100                 
+  # geometry = polygon 0,300 0,395 21,394 36,392 46,390 46,358 121,358 121,375 199,368 206,367 270,358 286,356 327,356 390,351 430,350 430,300 m , nodes = 304,62 overgrid = disabled  
   geochem = chimie_granite
 }
 
 zone residus {
-  geometry = polygon 46,358 46,390 91,380 109,376 121,375 121,358 m overgrid = disabled #, nodes = 53,24 overgrid = disabled  # surface
+  # geometry = polygon 46,358 46,390 91,380 109,376 121,375 121,358 m, nodes = 20,10 overgrid = disabled #, nodes = 53,24 overgrid = disabled  # surface
   # geometry = polygon 46,358 46,386 91,376 109,372 121,371 121,358 m, nodes = 200,50 overgrid = disabled # -4m
+  geometry = polygon 46,358 46,386 91,376 109,372 121,371 121,358 m, nodes = 20,10 overgrid = on #, nodes = 53,24 overgrid = disabled  # surface
 
   geochem = chimie_residus
 }
+
+zone steriles {
+  # permeability = 
+  geometry = polygon 0,391 0,395 21,394 36,392 46,390 91,380 109,376 121,375 199,368 206,367 270,358 286,356 327,356 390,351 430,350 430,346 390,347 327,352 286,352 270,354 206,363 199,364 121,371 109,372 91,372 46,386 36,388 21,390  m, nodes = 100,10  overgrid = on
+
+  geochem = chimie_steriles
+}
+
 
 boundary left {
   coordinates = 0,300 0,395 m
@@ -57,6 +67,12 @@ unit chimie_residus {
   #conc Sand = 2690 kg/m3
 }
 
+unit chimie_steriles {
+  # pH = 7
+  tot T4(aq) = 1 umol/l
+  mineral Sand = 8 kg/l
+  #conc Sand = 2690 kg/m3
+}
 unit chimie_granite {
   tot T3(aq) = 1 umol/l
   # conc Quartz = 2648.29 kg/m3
@@ -65,13 +81,14 @@ unit chimie_granite {
 
 define basis T2(aq)
 define basis T3(aq)
+define basis T4(aq)
 
 database = form_cig.tdb
 # extend surface-sites Sand(Cs), logK = 2.5
 
 # Simulation parameters
 # ---------------------
-duration = 300 h
+duration = 1000 h
 timestep = variable {
  start = 50 s
  # courant-factor = 3.5
@@ -79,14 +96,17 @@ timestep = variable {
  
 # Output specifications
 # ---------------------
-output = modele_5_no2
+output = modele_5_no6
 output-format = res, vtk
-sample = 100
+sample = 50
  
 select T1(aq) in umol/l
 select T2(aq) in umol/l
 select T3(aq) in umol/l
+select T4(aq) in umol/l
 select x-flowrate in m/s
+select y-flowrate in m/s
+
   
 
 # select aqueous{Cs[+]}, fixed{Cs[+]} in umol/l

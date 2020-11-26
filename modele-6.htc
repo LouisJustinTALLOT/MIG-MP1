@@ -4,7 +4,10 @@
 # Geometry and hydrogeology
 # -------------------------
 
-domain = 0,300 0,395 21,394 36,392 46,390 91,380 109,376 121,375 199,368 206,367 270,358 286,356 327,356 390,351 430,350 430,300 m
+# domain = 0,300 0,395 21,394 36,392 46,390 91,380 109,376 121,375 199,368 206,367 270,358 286,356 327,356 390,351 430,350 430,300 m
+
+#test 
+domain = 0,300 0,450 430,450 430,300 m
 #domain = 0,300 0,395 21,394 36,392 46,390 46,358 121,358 121,375 199,368 206,367 270,358 286,356 327,356 390,351 430,350 430,300 m
 
 # darcy-velocity = 0.5 cm/hr
@@ -14,42 +17,57 @@ porosity = 0.3
 # permeability = 1e-5 m/s
 flow-regime = saturated, stationary 
 # nodes = 2000
+nodes = 31200
 
+zone air { 
+  porosity = 1
+  permeability = 1 m/s
+  geometry = polygon 0,450 0,395 21,394 36,392 46,390 91,380 109,376 121,375 199,368 206,367 270,358 286,356 327,356 390,351 430,350 430,450 m density = 50# nodes= 100,100
+
+}
 
 zone granite {
   permeability = 1e-7 m/s
-  geometry = polygon 0,300 0,395 21,394 36,392 46,390 91,380 109,376 121,375 199,368 206,367 270,358 286,356 327,356 390,351 430,350 430,300 m, nodes = 200,100                 
+  geometry = polygon 0,300 0,395 21,394 36,392 46,390 91,380 109,376 121,375 199,368 206,367 270,358 286,356 327,356 390,351 430,350 430,300 m, density = 100 # nodes = 200,100                 
   # geometry = polygon 0,300 0,395 21,394 36,392 46,390 46,358 121,358 121,375 199,368 206,367 270,358 286,356 327,356 390,351 430,350 430,300 m , nodes = 304,62 overgrid = disabled  
   geochem = chimie_granite
 }
 
 zone residus {
-permeability = 1e-4 m/s
+permeability = 1e-5 m/s
   # geometry = polygon 46,358 46,390 91,380 109,376 121,375 121,358 m, nodes = 20,10 overgrid = disabled #, nodes = 53,24 overgrid = disabled  # surface
   # geometry = polygon 46,358 46,386 91,376 109,372 121,371 121,358 m, nodes = 200,50 overgrid = disabled # -4m
-  geometry = polygon 46,358 46,386 91,376 109,372 121,371 121,358 m, nodes = 20,10 overgrid = on #, nodes = 53,24 overgrid = disabled  # surface
+  geometry = polygon 46,358 46,386 91,376 109,372 121,371 121,358 m, density = 1 #, nodes = 20,10 overgrid = on #, nodes = 53,24 overgrid = disabled  # surface
 
   geochem = chimie_residus
 }
 
 zone steriles {
   permeability = 1e-4 m/s
-  geometry = polygon 0,391 0,395 21,394 36,392 46,390 91,380 109,376 121,375 199,368 206,367 270,358 286,356 327,356 390,351 430,350 430,346 390,347 327,352 286,352 270,354 206,363 199,364 121,371 109,372 91,372 46,386 36,388 21,390  m, nodes = 100,10  overgrid = on
+  geometry = polygon 0,391 0,395 21,394 36,392 46,390 91,380 109,376 121,375 199,368 206,367 270,358 286,356 327,356 390,351 430,350 430,346 390,347 327,352 286,352 270,354 206,363 199,364 121,371 109,372 91,372 46,386 36,388 21,390  m, density = 5 #, nodes = 100,10  overgrid = on
 
   geochem = chimie_steriles
 }
 
 
-boundary left {
-  coordinates = 0,300 0,395 m
-  transport-condition = flux using left
-  # flow-condition = constant-flow at 0.5,0 m/hr
-  flow-condition = constant-head at 395 m
-  # modify at 5 h, transport-condition = flux using injection_base
-}
-boundary right {
-  coordinates = 430,300 430,350 m
-  flow-condition = constant-head at 349 m
+# boundary left {
+#   coordinates = 0,300 0,395 m
+#   transport-condition = flux using left
+#   # flow-condition = constant-flow at 0.5,0 m/hr
+#   flow-condition = constant-head at 395 m
+#   # modify at 5 h, transport-condition = flux using injection_base
+# }
+# boundary right {
+#   coordinates = 430,300 430,350 m
+#   flow-condition = constant-head at 349 m
+#   # flow-condition = constant-head at 50 m
+# }
+
+boundary top {
+  coordinates = 0,450 430,450 m
+  transport-condition = flux using top
+  flow-condition = constant-flow at 0,-23e-6 m/h
+  # flow-condition = constant-head at 349 m
   # flow-condition = constant-head at 50 m
 }
 
@@ -60,6 +78,9 @@ unit left {
 }
 unit right {
   tot T1(aq) = 1 umol/l
+}
+unit top {
+  tot T5(aq) = 1 umol/l
 }
 
 unit chimie_residus {
@@ -84,6 +105,7 @@ unit chimie_granite {
 define basis T2(aq)
 define basis T3(aq)
 define basis T4(aq)
+define basis T5(aq)
 
 database = form_cig.tdb
 # extend surface-sites Sand(Cs), logK = 2.5
@@ -98,7 +120,7 @@ timestep = variable {
  
 # Output specifications
 # ---------------------
-output = modele_6_no2
+output = modele_6_no4
 output-format = res, vtk
 sample = 50
  
@@ -106,6 +128,7 @@ select T1(aq) in umol/l
 select T2(aq) in umol/l
 select T3(aq) in umol/l
 select T4(aq) in umol/l
+select T5(aq) in umol/l
 select x-flowrate in m/s
 select y-flowrate in m/s
 

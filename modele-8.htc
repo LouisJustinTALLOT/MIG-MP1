@@ -4,7 +4,7 @@
 # Geometry and hydrogeology
 # -------------------------
 # domain = 0,0 0.1,0 0.1,0.01 0,0.01 m
-domain = 0,0 10,0 10,10 0,10 m 
+domain = 0,0 10,0 10,2 0,2 m 
 # darcy-velocity = 0.5 cm/hr
 # dispersivity = 2.5 mm
 # diffusion-coeff = 1e-9 m2/s
@@ -13,19 +13,20 @@ permeability = 1e-5 m/s
 flow-regime = saturated, stationary
 
 zone sand {
+  head = 1 m
   # geometry = rectangle 0.05,0.005,0.1,0.01 m, nodes = 50,1
-  geometry = rectangle 5,5 10,10 m, nodes = 50,50
+  geometry = rectangle 5,1 10,2 m, nodes = 50,1
   geochem = chimie_sand
 }
 boundary left {
-  coordinates = 0,0 0,10 m
+  coordinates = 0,0 0,2 m
   transport-condition = flux using left
   # flow-condition = constant-flow at 0.5,0 m/y
   flow-condition = constant-head at 5 m
   # modify at 5 h, transport-condition = flux using injection_base
 }
 boundary right {
-  coordinates = 10,0 10,10 m
+  coordinates = 10,0 10,2 m
   flow-condition = constant-head at 1 m
 
 }

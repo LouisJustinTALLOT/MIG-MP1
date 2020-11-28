@@ -15,23 +15,23 @@ solver-regime = vertex
 grid-regime = vertex modele-11.msh
 
 
-zone sand {
+zone 11 {
   # geometry = rectangle 0.05,0.005,0.1,0.01 m, nodes = 50,1
   # geometry = rectangle 5,5 10,10 m
   geochem = chimie_sand
 }
-boundary CL_g {
-  coordinates = 0,0 0,10 m
-  transport-condition = flux using left
-  # flow-condition = constant-flow at 0.5,0 m/y
-  flow-condition = constant-head at 2 m
-  # modify at 5 h, transport-condition = flux using injection_base
-}
-boundary CL_d {
-  coordinates = 10,0 10,10 m
-  flow-condition = constant-head at 1 m
+# boundary 12 {
+#   coordinates = 0,0 0,10 m
+#   transport-condition = flux using left
+#   # flow-condition = constant-flow at 0.5,0 m/y
+#   flow-condition = constant-head at 2 m
+#   # modify at 5 h, transport-condition = flux using injection_base
+# }
+# boundary 13 {
+#   coordinates = 10,0 10,10 m
+#   flow-condition = constant-head at 1 m
 
-}
+# }
 # Geochemistry
 # ------------
 unit left {

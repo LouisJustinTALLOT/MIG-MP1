@@ -91,23 +91,23 @@ Line(36) = {41, 40};
 
 
 // les surfaces
-Curve Loop(1) = {1, 18, 19, 20, 31, 33, 34, 35, 36, 16, 17};
+Line Loop(1) = {1, 18, 19, 20, 31, 33, 34, 35, 36, 16, 17};
 Plane Surface(1) = {1};
 Physical Surface(zone_granite_dur) = {1};
 
-Curve Loop(2) = {26, 27, 28, 29, 30, 14, 15, -36, -35, -34, -33, 32, 22};
+Line Loop(2) = {26, 27, 28, 29, 30, 14, 15, -36, -35, -34, -33, 32, 22};
 Plane Surface(2) = {2};
 Physical Surface(zone_granite_fracture) = {2};
 
-Curve Loop(3) = {20, 31, 32, 22, 23, 24, 25};
+Line Loop(3) = {20, 31, 32, 22, 23, 24, 25};
 Plane Surface(3) = {3};
 Physical Surface(zone_residus) = {3};
 
-Curve Loop(4) = {3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, -30, -29, -28, -27, -26, 23, 24, 25, -19, -18, 2};
+Line Loop(4) = {3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, -30, -29, -28, -27, -26, 23, 24, 25, -19, -18, 2};
 Plane Surface(4) = {4};
 Physical Surface(zone_steriles) = {4};
 
 // les lignes conditions aux limites
-Physical Curve(CL_g) = {1, 2};
-Physical Curve(CL_d) = {13, 14, 15, 16};
-Physical Curve(CL_h) = {3, 4, 5, 7, 6, 8, 9, 10, 11, 12};
+Physical Line(CL_g) = {1, 2};
+Physical Line(CL_d) = {13, 14, 15, 16};
+Physical Line(CL_h) = {3, 4, 5, 7, 6, 8, 9, 10, 11, 12};

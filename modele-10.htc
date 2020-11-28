@@ -4,10 +4,10 @@
 # Geometry and hydrogeology
 # -------------------------
 
-# domain = 0,300 0,395 21,394 36,392 46,390 91,380 109,376 121,375 199,368 206,367 270,358 286,356 327,356 390,351 430,350 430,300 m
+domain = 0,300 0,395 21,394 36,392 46,390 91,380 109,376 121,375 199,368 206,367 270,358 286,356 327,356 390,351 430,350 430,300 m
 #domain = 0,300 0,395 21,394 36,392 46,390 46,358 121,358 121,375 199,368 206,367 270,358 286,356 327,356 390,351 430,350 430,300 m
 
-solver-regime = vertex
+
 
 # darcy-velocity = 0.5 cm/hr
 # dispersivity = 2.5 mm
@@ -16,6 +16,7 @@ diffusion-coeff = 1e-9 m2/s
 
 database = form_cig.tdb
 
+solver-regime = vertex
 grid-regime = vertex ribiere.msh
 
 flow-regime = saturated, stationary 
@@ -24,7 +25,7 @@ flow-regime = saturated, stationary
 # solver-regime = rectangular
 # solver = continuous-fractions
 
-domain 0,0 0,1 1,1 1,0 m
+# domain 0,0 0,1 1,1 1,0 m
 
 
 zone 1001 {
@@ -116,161 +117,6 @@ boundary 2003 {
   modify at  304 d, flow-condition = constant-flow at 0,-154.8 mm/y
   modify at  334 d, flow-condition = constant-flow at 0,-1010.4 mm/y
 }
-
-# boundary top1 {
-#   coordinates = 0,395 21,394
-#   transport-condition = flux using top
-#   flow-condition = constant-flow at 0,-577.2 mm/y
-#   modify at  31 d, flow-condition = constant-flow at 0,-181.2 mm/y
-#   modify at  59 d, flow-condition = constant-flow at 0,-12 mm/y
-#   modify at  90 d, flow-condition = constant-flow at 0,-522 mm/y
-#   modify at  120 d, flow-condition = constant-flow at 0,-0 mm/y
-#   modify at  304 d, flow-condition = constant-flow at 0,-154.8 mm/y
-#   modify at  334 d, flow-condition = constant-flow at 0,-1010.4 mm/y
-# }
-# # boundary top2 {
-# #   coordinates = 11,394 21,394
-# #   transport-condition = flux using top
-# # flow-condition = constant-flow at 0,-577.2 mm/y
-# # }
-# boundary top3 {
-#   coordinates = 21,394 36,392
-#   transport-condition = flux using top
-#   flow-condition = constant-flow at 0,-577.2 mm/y
-#   modify at  31 d, flow-condition = constant-flow at 0,-181.2 mm/y
-#   modify at  59 d, flow-condition = constant-flow at 0,-12 mm/y
-#   modify at  90 d, flow-condition = constant-flow at 0,-522 mm/y
-#   modify at  120 d, flow-condition = constant-flow at 0,-0 mm/y
-#   modify at  304 d, flow-condition = constant-flow at 0,-154.8 mm/y
-#   modify at  334 d, flow-condition = constant-flow at 0,-1010.4 mm/y
-# }
-# boundary top4 {
-#   coordinates = 36,392 46,390
-#   transport-condition = flux using top
-#   flow-condition = constant-flow at 0,-577.2 mm/y
-#   modify at  31 d, flow-condition = constant-flow at 0,-181.2 mm/y
-#   modify at  59 d, flow-condition = constant-flow at 0,-12 mm/y
-#   modify at  90 d, flow-condition = constant-flow at 0,-522 mm/y
-#   modify at  120 d, flow-condition = constant-flow at 0,-0 mm/y
-#   modify at  304 d, flow-condition = constant-flow at 0,-154.8 mm/y
-#   modify at  334 d, flow-condition = constant-flow at 0,-1010.4 mm/y
-# }
-# boundary top5 {
-#   coordinates = 46,390 91,380
-#   transport-condition = flux using top
-#   flow-condition = constant-flow at 0,-577.2 mm/y
-#   modify at  31 d, flow-condition = constant-flow at 0,-181.2 mm/y
-#   modify at  59 d, flow-condition = constant-flow at 0,-12 mm/y
-#   modify at  90 d, flow-condition = constant-flow at 0,-522 mm/y
-#   modify at  120 d, flow-condition = constant-flow at 0,-0 mm/y
-#   modify at  304 d, flow-condition = constant-flow at 0,-154.8 mm/y
-#   modify at  334 d, flow-condition = constant-flow at 0,-1010.4 mm/y
-# }
-# boundary top6 {
-#   coordinates = 91,380 109,376
-#   transport-condition = flux using top
-#   flow-condition = constant-flow at 0,-577.2 mm/y
-#   modify at  31 d, flow-condition = constant-flow at 0,-181.2 mm/y
-#   modify at  59 d, flow-condition = constant-flow at 0,-12 mm/y
-#   modify at  90 d, flow-condition = constant-flow at 0,-522 mm/y
-#   modify at  120 d, flow-condition = constant-flow at 0,-0 mm/y
-#   modify at  304 d, flow-condition = constant-flow at 0,-154.8 mm/y
-#   modify at  334 d, flow-condition = constant-flow at 0,-1010.4 mm/y
-# }
-# boundary top7 {
-#   coordinates = 109,376 121,375
-#   transport-condition = flux using top
-#   flow-condition = constant-flow at 0,-577.2 mm/y
-#   modify at  31 d, flow-condition = constant-flow at 0,-181.2 mm/y
-#   modify at  59 d, flow-condition = constant-flow at 0,-12 mm/y
-#   modify at  90 d, flow-condition = constant-flow at 0,-522 mm/y
-#   modify at  120 d, flow-condition = constant-flow at 0,-0 mm/y
-#   modify at  304 d, flow-condition = constant-flow at 0,-154.8 mm/y
-#   modify at  334 d, flow-condition = constant-flow at 0,-1010.4 mm/y
-# }
-# boundary top8 {
-#   coordinates = 121,375 199,368
-#   transport-condition = flux using top
-#   flow-condition = constant-flow at 0,-577.2 mm/y
-#   modify at  31 d, flow-condition = constant-flow at 0,-181.2 mm/y
-#   modify at  59 d, flow-condition = constant-flow at 0,-12 mm/y
-#   modify at  90 d, flow-condition = constant-flow at 0,-522 mm/y
-#   modify at  120 d, flow-condition = constant-flow at 0,-0 mm/y
-#   modify at  304 d, flow-condition = constant-flow at 0,-154.8 mm/y
-#   modify at  334 d, flow-condition = constant-flow at 0,-1010.4 mm/y
-# }
-# boundary top9 {
-#   coordinates = 199,368 206,367
-#   transport-condition = flux using top
-#   flow-condition = constant-flow at 0,-577.2 mm/y
-#   modify at  31 d, flow-condition = constant-flow at 0,-181.2 mm/y
-#   modify at  59 d, flow-condition = constant-flow at 0,-12 mm/y
-#   modify at  90 d, flow-condition = constant-flow at 0,-522 mm/y
-#   modify at  120 d, flow-condition = constant-flow at 0,-0 mm/y
-#   modify at  304 d, flow-condition = constant-flow at 0,-154.8 mm/y
-#   modify at  334 d, flow-condition = constant-flow at 0,-1010.4 mm/y
-# }
-# boundary top10 {
-#   coordinates = 206,367 270,358
-#   transport-condition = flux using top
-#   flow-condition = constant-flow at 0,-577.2 mm/y
-#   modify at  31 d, flow-condition = constant-flow at 0,-181.2 mm/y
-#   modify at  59 d, flow-condition = constant-flow at 0,-12 mm/y
-#   modify at  90 d, flow-condition = constant-flow at 0,-522 mm/y
-#   modify at  120 d, flow-condition = constant-flow at 0,-0 mm/y
-#   modify at  304 d, flow-condition = constant-flow at 0,-154.8 mm/y
-#   modify at  334 d, flow-condition = constant-flow at 0,-1010.4 mm/y
-# }
-# boundary top11 {
-#   coordinates = 270,358 286,356
-#   transport-condition = flux using top 
-#   flow-condition = constant-flow at 0,-577.2 mm/y
-#   modify at  31 d, flow-condition = constant-flow at 0,-181.2 mm/y
-#   modify at  59 d, flow-condition = constant-flow at 0,-12 mm/y
-#   modify at  90 d, flow-condition = constant-flow at 0,-522 mm/y
-#   modify at  120 d, flow-condition = constant-flow at 0,-0 mm/y
-#   modify at  304 d, flow-condition = constant-flow at 0,-154.8 mm/y
-#   modify at  334 d, flow-condition = constant-flow at 0,-1010.4 mm/y
-# }
-# boundary top12 {
-#   coordinates = 286,356 327,356
-#   transport-condition = flux using top
-#   flow-condition = constant-flow at 0,-577.2 mm/y
-#   modify at  31 d, flow-condition = constant-flow at 0,-181.2 mm/y
-#   modify at  59 d, flow-condition = constant-flow at 0,-12 mm/y
-#   modify at  90 d, flow-condition = constant-flow at 0,-522 mm/y
-#   modify at  120 d, flow-condition = constant-flow at 0,-0 mm/y
-#   modify at  304 d, flow-condition = constant-flow at 0,-154.8 mm/y
-#   modify at  334 d, flow-condition = constant-flow at 0,-1010.4 mm/y
-# }
-# boundary top13 {
-#   coordinates = 327,356 390,351
-#   transport-condition = flux using top
-#   flow-condition = constant-flow at 0,-577.2 mm/y
-#   modify at  31 d, flow-condition = constant-flow at 0,-181.2 mm/y
-#   modify at  59 d, flow-condition = constant-flow at 0,-12 mm/y
-#   modify at  90 d, flow-condition = constant-flow at 0,-522 mm/y
-#   modify at  120 d, flow-condition = constant-flow at 0,-0 mm/y
-#   modify at  304 d, flow-condition = constant-flow at 0,-154.8 mm/y
-#   modify at  334 d, flow-condition = constant-flow at 0,-1010.4 mm/y
-# }
-# boundary top14 {
-#   coordinates = 390,351 430,350
-#   transport-condition = flux using top
-#   flow-condition = constant-flow at 0,-577.2 mm/y
-#   modify at  31 d, flow-condition = constant-flow at 0,-181.2 mm/y
-#   modify at  59 d, flow-condition = constant-flow at 0,-12 mm/y
-#   modify at  90 d, flow-condition = constant-flow at 0,-522 mm/y
-#   modify at  120 d, flow-condition = constant-flow at 0,-0 mm/y
-#   modify at  304 d, flow-condition = constant-flow at 0,-154.8 mm/y
-#   modify at  334 d, flow-condition = constant-flow at 0,-1010.4 mm/y
-# }
-# # boundary top15 {
-# #   coordinates = 430,350 430,346
-# #   transport-condition = flux using top
-# # flow-condition = constant-flow at 0,-577.2 mm/y
-# # }
-
 
 
 # Geochemistry

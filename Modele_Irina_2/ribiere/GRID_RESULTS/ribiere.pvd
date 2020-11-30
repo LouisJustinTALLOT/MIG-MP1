@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<VTKFile type="Collection" version="0.1" byte_order="LittleEndian" compressor="vtkZLibDataCompressor">
+  <Collection>
+    <DataSet timestep="0" group="" part="0" file="sample_0.vtu" />
+    <DataSet timestep="0.5" group="" part="0" file="sample_1.vtu" />
+    <DataSet timestep="1" group="" part="0" file="sample_2.vtu" />
+    <DataSet timestep="1.5" group="" part="0" file="sample_3.vtu" />
+    <DataSet timestep="2" group="" part="0" file="sample_4.vtu" />
+    <DataSet timestep="2.5" group="" part="0" file="sample_5.vtu" />
+    <DataSet timestep="3" group="" part="0" file="sample_6.vtu" />
+    <DataSet timestep="3.5" group="" part="0" file="sample_7.vtu" />
+    <DataSet timestep="4" group="" part="0" file="sample_8.vtu" />
+    <DataSet timestep="4.5" group="" part="0" file="sample_9.vtu" />
+    <DataSet timestep="5" group="" part="0" file="sample_10.vtu" />
+    <DataSet timestep="5.5" group="" part="0" file="sample_11.vtu" />
+    <DataSet timestep="6" group="" part="0" file="sample_12.vtu" />
+    <DataSet timestep="6.5" group="" part="0" file="sample_13.vtu" />
+    <DataSet timestep="7" group="" part="0" file="sample_14.vtu" />
+    <DataSet timestep="7.5" group="" part="0" file="sample_15.vtu" />
+    <DataSet timestep="8" group="" part="0" file="sample_16.vtu" />
+    <DataSet timestep="8.5" group="" part="0" file="sample_17.vtu" />
+    <DataSet timestep="9" group="" part="0" file="sample_18.vtu" />
+    <DataSet timestep="9.5" group="" part="0" file="sample_19.vtu" />
+    <DataSet timestep="10" group="" part="0" file="sample_20.vtu" />
+  </Collection>
+</VTKFile>

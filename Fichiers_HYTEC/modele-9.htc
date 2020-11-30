@@ -1,0 +1,324 @@
+# MIG 2020 - MP1
+# Modele numero 9
+
+# Geometry and hydrogeology
+# -------------------------
+
+domain = 0,300 0,395 21,394 36,392 46,390 91,380 109,376 121,375 199,368 206,367 270,358 286,356 327,356 390,351 430,350 430,300 m
+#domain = 0,300 0,395 21,394 36,392 46,390 46,358 121,358 121,375 199,368 206,367 270,358 286,356 327,356 390,351 430,350 430,300 m
+
+# darcy-velocity = 0.5 cm/hr
+# dispersivity = 2.5 mm
+diffusion-coeff = 1e-9 m2/s
+# porosity = 0.3
+solver-regime = vertex
+grid-regime = vertex ribiere.msh
+
+flow-regime = saturated, stationary 
+# nodes = 2000
+# solver-regime = rectangular
+# solver = continuous-fractions
+
+zone granite {
+  head = 360 m
+  porosity = 0.03
+  permeability = 1e-7 m/s
+  geometry = polygon 0,300 0,395 21,394 36,392 46,390 91,380 109,376 121,375 199,368 206,367 270,358 286,356 327,356 390,351 430,350 430,300 m, nodes = 200,100                 
+  # geometry = polygon 0,300 0,395 21,394 36,392 46,390 46,358 121,358 121,375 199,368 206,367 270,358 286,356 327,356 390,351 430,350 430,300 m , nodes = 304,62 overgrid = disabled  
+  geochem = chimie_granite
+}
+
+zone granite_fracture {
+  head = 360 m
+  porosity = 0.05
+  permeability = 1e-4 m/s
+  geometry = polygon 91,355 91,357, 199,363 270,351 430,341 430,337 270,337 199,338 m, nodes = 100,10 overgrid = on
+  geochem = chimie_granite
+}
+
+zone residus {
+  head = 360 m
+  porosity = 0.2
+  permeability = 1e-5 m/s
+  # geometry = polygon 46,358 46,390 91,380 109,376 121,375 121,358 m, nodes = 20,10 overgrid = disabled #, nodes = 53,24 overgrid = disabled  # surface
+  # geometry = polygon 46,358 46,386 91,376 109,372 121,371 121,358 m, nodes = 200,50 overgrid = disabled # -4m
+  geometry = polygon 46,358 46,386 91,376 109,372 121,371 121,358 m, nodes = 73,15 overgrid = disabled #, nodes = 53,24 overgrid = disabled  # surface
+
+  geochem = chimie_residus
+}
+
+zone steriles {
+  head = 370 m
+  porosity = 0.1
+  permeability = 1e-4 m/s
+  geometry = polygon 0,391 0,395 21,394 36,392 46,390 91,380 109,376 121,375 199,368 206,367 270,358 286,356 327,356 390,351 430,350 430,346 390,347 327,352 286,352 270,354 206,363 199,364 121,371 109,372 91,372 46,386 36,388 21,390  m, nodes = 100,10  overgrid = on
+
+  geochem = chimie_steriles
+}
+
+
+# boundary left {
+#   coordinates = 0,300 0,370 m
+#   # transport-condition = flux using left
+#   # flow-condition = constant-flow at 0.5,0 m/hr
+#   # flow-condition = constant-head at 395 m
+#   flow-condition = constant-head at 370 m
+#   # modify at 5 h, transport-condition = flux using injection_base
+#   # modify at X 100 d, flow-condition =
+# }
+
+boundary right {
+  coordinates = 430,300 430,350 m
+  flow-condition = constant-head at 348 m
+  # flow-condition = constant-head at 50 m
+}
+
+# zone PZ5  {
+#   head = 363 m
+#   geometry = polygon 199,300 200,300 200,368 199,368 m, nodes = 1,1 overgrid = disabled
+# }
+
+# zone PZ3 {
+#   head = 370 m
+#   geometry = polygon 21,300 21,394 m
+# }
+# zone PZ6 {
+#   head = 350.4 m
+#   geometry = polygon 270,300 270,358 m
+# }
+
+#
+ # modify at  0 d, flow-condition = constant-flow at 0,-577.2 mm/y
+  # modify at  31 d, flow-condition = constant-flow at 0,-181.2 mm/y
+  # modify at  59 d, flow-condition = constant-flow at 0,-12 mm/y
+  # modify at  90 d, flow-condition = constant-flow at 0,-522 mm/y
+  # modify at  120 d, flow-condition = constant-flow at 0,-0 mm/y
+  # modify at  304 d, flow-condition = constant-flow at 0,-154.8 mm/y
+  # modify at  334 d, flow-condition = constant-flow at 0,-1010.4 mm/y
+
+
+
+
+boundary top1 {
+  coordinates = 0,395 21,394
+  transport-condition = flux using top
+  flow-condition = constant-flow at 0,-577.2 mm/y
+  modify at  31 d, flow-condition = constant-flow at 0,-181.2 mm/y
+  modify at  59 d, flow-condition = constant-flow at 0,-12 mm/y
+  modify at  90 d, flow-condition = constant-flow at 0,-522 mm/y
+  modify at  120 d, flow-condition = constant-flow at 0,-0 mm/y
+  modify at  304 d, flow-condition = constant-flow at 0,-154.8 mm/y
+  modify at  334 d, flow-condition = constant-flow at 0,-1010.4 mm/y
+}
+# boundary top2 {
+#   coordinates = 11,394 21,394
+#   transport-condition = flux using top
+# flow-condition = constant-flow at 0,-577.2 mm/y
+# }
+boundary top3 {
+  coordinates = 21,394 36,392
+  transport-condition = flux using top
+  flow-condition = constant-flow at 0,-577.2 mm/y
+  modify at  31 d, flow-condition = constant-flow at 0,-181.2 mm/y
+  modify at  59 d, flow-condition = constant-flow at 0,-12 mm/y
+  modify at  90 d, flow-condition = constant-flow at 0,-522 mm/y
+  modify at  120 d, flow-condition = constant-flow at 0,-0 mm/y
+  modify at  304 d, flow-condition = constant-flow at 0,-154.8 mm/y
+  modify at  334 d, flow-condition = constant-flow at 0,-1010.4 mm/y
+}
+boundary top4 {
+  coordinates = 36,392 46,390
+  transport-condition = flux using top
+  flow-condition = constant-flow at 0,-577.2 mm/y
+  modify at  31 d, flow-condition = constant-flow at 0,-181.2 mm/y
+  modify at  59 d, flow-condition = constant-flow at 0,-12 mm/y
+  modify at  90 d, flow-condition = constant-flow at 0,-522 mm/y
+  modify at  120 d, flow-condition = constant-flow at 0,-0 mm/y
+  modify at  304 d, flow-condition = constant-flow at 0,-154.8 mm/y
+  modify at  334 d, flow-condition = constant-flow at 0,-1010.4 mm/y
+}
+boundary top5 {
+  coordinates = 46,390 91,380
+  transport-condition = flux using top
+  flow-condition = constant-flow at 0,-577.2 mm/y
+  modify at  31 d, flow-condition = constant-flow at 0,-181.2 mm/y
+  modify at  59 d, flow-condition = constant-flow at 0,-12 mm/y
+  modify at  90 d, flow-condition = constant-flow at 0,-522 mm/y
+  modify at  120 d, flow-condition = constant-flow at 0,-0 mm/y
+  modify at  304 d, flow-condition = constant-flow at 0,-154.8 mm/y
+  modify at  334 d, flow-condition = constant-flow at 0,-1010.4 mm/y
+}
+boundary top6 {
+  coordinates = 91,380 109,376
+  transport-condition = flux using top
+  flow-condition = constant-flow at 0,-577.2 mm/y
+  modify at  31 d, flow-condition = constant-flow at 0,-181.2 mm/y
+  modify at  59 d, flow-condition = constant-flow at 0,-12 mm/y
+  modify at  90 d, flow-condition = constant-flow at 0,-522 mm/y
+  modify at  120 d, flow-condition = constant-flow at 0,-0 mm/y
+  modify at  304 d, flow-condition = constant-flow at 0,-154.8 mm/y
+  modify at  334 d, flow-condition = constant-flow at 0,-1010.4 mm/y
+}
+boundary top7 {
+  coordinates = 109,376 121,375
+  transport-condition = flux using top
+  flow-condition = constant-flow at 0,-577.2 mm/y
+  modify at  31 d, flow-condition = constant-flow at 0,-181.2 mm/y
+  modify at  59 d, flow-condition = constant-flow at 0,-12 mm/y
+  modify at  90 d, flow-condition = constant-flow at 0,-522 mm/y
+  modify at  120 d, flow-condition = constant-flow at 0,-0 mm/y
+  modify at  304 d, flow-condition = constant-flow at 0,-154.8 mm/y
+  modify at  334 d, flow-condition = constant-flow at 0,-1010.4 mm/y
+}
+boundary top8 {
+  coordinates = 121,375 199,368
+  transport-condition = flux using top
+  flow-condition = constant-flow at 0,-577.2 mm/y
+  modify at  31 d, flow-condition = constant-flow at 0,-181.2 mm/y
+  modify at  59 d, flow-condition = constant-flow at 0,-12 mm/y
+  modify at  90 d, flow-condition = constant-flow at 0,-522 mm/y
+  modify at  120 d, flow-condition = constant-flow at 0,-0 mm/y
+  modify at  304 d, flow-condition = constant-flow at 0,-154.8 mm/y
+  modify at  334 d, flow-condition = constant-flow at 0,-1010.4 mm/y
+}
+boundary top9 {
+  coordinates = 199,368 206,367
+  transport-condition = flux using top
+  flow-condition = constant-flow at 0,-577.2 mm/y
+  modify at  31 d, flow-condition = constant-flow at 0,-181.2 mm/y
+  modify at  59 d, flow-condition = constant-flow at 0,-12 mm/y
+  modify at  90 d, flow-condition = constant-flow at 0,-522 mm/y
+  modify at  120 d, flow-condition = constant-flow at 0,-0 mm/y
+  modify at  304 d, flow-condition = constant-flow at 0,-154.8 mm/y
+  modify at  334 d, flow-condition = constant-flow at 0,-1010.4 mm/y
+}
+boundary top10 {
+  coordinates = 206,367 270,358
+  transport-condition = flux using top
+  flow-condition = constant-flow at 0,-577.2 mm/y
+  modify at  31 d, flow-condition = constant-flow at 0,-181.2 mm/y
+  modify at  59 d, flow-condition = constant-flow at 0,-12 mm/y
+  modify at  90 d, flow-condition = constant-flow at 0,-522 mm/y
+  modify at  120 d, flow-condition = constant-flow at 0,-0 mm/y
+  modify at  304 d, flow-condition = constant-flow at 0,-154.8 mm/y
+  modify at  334 d, flow-condition = constant-flow at 0,-1010.4 mm/y
+}
+boundary top11 {
+  coordinates = 270,358 286,356
+  transport-condition = flux using top 
+  flow-condition = constant-flow at 0,-577.2 mm/y
+  modify at  31 d, flow-condition = constant-flow at 0,-181.2 mm/y
+  modify at  59 d, flow-condition = constant-flow at 0,-12 mm/y
+  modify at  90 d, flow-condition = constant-flow at 0,-522 mm/y
+  modify at  120 d, flow-condition = constant-flow at 0,-0 mm/y
+  modify at  304 d, flow-condition = constant-flow at 0,-154.8 mm/y
+  modify at  334 d, flow-condition = constant-flow at 0,-1010.4 mm/y
+}
+boundary top12 {
+  coordinates = 286,356 327,356
+  transport-condition = flux using top
+  flow-condition = constant-flow at 0,-577.2 mm/y
+  modify at  31 d, flow-condition = constant-flow at 0,-181.2 mm/y
+  modify at  59 d, flow-condition = constant-flow at 0,-12 mm/y
+  modify at  90 d, flow-condition = constant-flow at 0,-522 mm/y
+  modify at  120 d, flow-condition = constant-flow at 0,-0 mm/y
+  modify at  304 d, flow-condition = constant-flow at 0,-154.8 mm/y
+  modify at  334 d, flow-condition = constant-flow at 0,-1010.4 mm/y
+}
+boundary top13 {
+  coordinates = 327,356 390,351
+  transport-condition = flux using top
+  flow-condition = constant-flow at 0,-577.2 mm/y
+  modify at  31 d, flow-condition = constant-flow at 0,-181.2 mm/y
+  modify at  59 d, flow-condition = constant-flow at 0,-12 mm/y
+  modify at  90 d, flow-condition = constant-flow at 0,-522 mm/y
+  modify at  120 d, flow-condition = constant-flow at 0,-0 mm/y
+  modify at  304 d, flow-condition = constant-flow at 0,-154.8 mm/y
+  modify at  334 d, flow-condition = constant-flow at 0,-1010.4 mm/y
+}
+boundary top14 {
+  coordinates = 390,351 430,350
+  transport-condition = flux using top
+  flow-condition = constant-flow at 0,-577.2 mm/y
+  modify at  31 d, flow-condition = constant-flow at 0,-181.2 mm/y
+  modify at  59 d, flow-condition = constant-flow at 0,-12 mm/y
+  modify at  90 d, flow-condition = constant-flow at 0,-522 mm/y
+  modify at  120 d, flow-condition = constant-flow at 0,-0 mm/y
+  modify at  304 d, flow-condition = constant-flow at 0,-154.8 mm/y
+  modify at  334 d, flow-condition = constant-flow at 0,-1010.4 mm/y
+}
+# boundary top15 {
+#   coordinates = 430,350 430,346
+#   transport-condition = flux using top
+# flow-condition = constant-flow at 0,-577.2 mm/y
+# }
+
+
+
+# Geochemistry
+# ------------
+unit left {
+  tot T1(aq) = 1 umol/l
+}
+unit right {
+  tot T1(aq) = 1 umol/l
+}
+unit top {
+  tot T5(aq) = 1 umol/l
+}
+
+unit chimie_residus {
+  # pH = 7
+  tot T2(aq) = 1 umol/l
+  mineral Sand = 8 kg/l
+  #conc Sand = 2690 kg/m3
+}
+
+unit chimie_steriles {
+  # pH = 7
+  tot T4(aq) = 1 umol/l
+  mineral Sand = 8 kg/l
+  #conc Sand = 2690 kg/m3
+}
+unit chimie_granite {
+  tot T3(aq) = 1 umol/l
+  # conc Quartz = 2648.29 kg/m3
+  mineral Quartz = 8 kg/l
+}
+
+define basis T2(aq)
+define basis T3(aq)
+define basis T4(aq)
+define basis T5(aq)
+
+database = form_cig.tdb
+# extend surface-sites Sand(Cs), logK = 2.5
+
+# Simulation parameters
+# ---------------------
+duration = 1 y
+timestep = variable {
+ start = 1 d
+ # courant-factor = 3.5
+}
+ 
+# Output specifications
+# ---------------------
+output = modele_9_no2
+output-format = res, vtk
+sample = 50
+ 
+select T1(aq) in umol/l
+select T2(aq) in umol/l
+select T3(aq) in umol/l
+select T4(aq) in umol/l
+select T5(aq) in umol/l
+select head
+select permeability
+select porosity 
+select x-flowrate in m/s
+select y-flowrate in m/s
+
+
+# select aqueous{Cs[+]}, fixed{Cs[+]} in umol/l
+# select aqueous{Na[+]}, fixed{Na[+]} in umol/l

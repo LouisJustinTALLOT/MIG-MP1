@@ -4,7 +4,7 @@
 // précision du mailllage
 dx = 5;
 dxx = 2;
-dxxx = 1;
+dxxx = 2;
 
 // 4 zones
 zone_granite_dur = 1001;
@@ -19,8 +19,8 @@ CL_d = 2002;
 CL_h = 2003;
 
 // les points
-Point(1) = {0, 300, 0, dx};
-Point(4) = {430, 300, 0, dx};
+Point(1) = {0, 300, 0, 10};
+Point(4) = {430, 300, 0, 10};
 Point(6) = {36, 392, 0, dxx};
 Point(7) = {91, 379, 0, dxx};
 Point(8) = {109, 376, 0, dxx};
@@ -33,27 +33,27 @@ Point(15) = {121, 375, 0, dx};
 Point(16) = {0, 395, 0, dxx};
 Point(17) = {430, 350, 0, dxx};
 Point(18) = {0, 395, 0, dx};
-Point(19) = {46, 358, 0, dxxx};
+Point(19) = {46, 358, 0, 3};
 Point(20) = {121, 358, 0, dx};
 Point(21) = {121, 375, 0, dx};
 Point(22) = {36, 388, 0, dx};
 Point(23) = {46, 386, 0, dxx};
-Point(24) = {91, 375, 0, dx};
+Point(24) = {91, 375, 0, dxx};
 Point(25) = {109, 376, 0, dx};
-Point(26) = {109, 372, 0, dx};
-Point(27) = {206, 363, 0, dx};
+Point(26) = {109, 372, 0, dxx};
+Point(27) = {206, 363, 0, dxx};
 Point(28) = {286, 352, 0, dx};
 Point(29) = {327, 352, 0, dx};
-Point(30) = {390, 347, 0, dx};
+Point(30) = {390, 347, 0, dxx};
 Point(31) = {430, 346, 0, dx};
-Point(32) = {121, 371, 0, dx};
+Point(32) = {121, 371, 0, dxx};
 Point(33) = {0, 391, 0, dx};
-Point(34) = {91, 350, 0, dxxx};
-Point(35) = {91, 358, 0, dxxx};
+Point(34) = {91, 350, 0, dx};
+Point(35) = {91, 358, 0, 4};
 Point(39) = {430, 341, 0, dx};
 Point(40) = {430, 337, 0, dx};
 Point(41) = {270, 337, 0, dx};
-Point(42) = {199, 338, 0, dx};
+Point(42) = {199, 338, 0, 10};
 Point(43) = {36, 358, 0, dx};
 Point(44) = {46, 352, 0, dxxx};
 Point(45) = {46, 373, 0, dx};
@@ -113,7 +113,6 @@ Line Loop(48) = {37, 39, 34, 35, 36, 16, 17, 1, 18, 38};
 Plane Surface(1) = {48};
 Physical Surface(zone_granite_dur) = {1};
 
-
 Line Loop(49) = {35, 36, -15, -14, -30, -29, -28, -27, -26, 46, 47, -32, -31, -45, -43, -19, 38, 37, 39, 34};
 Plane Surface(2) = {49};
 Physical Surface(zone_granite_fracture) = {2};
@@ -126,7 +125,13 @@ Line Loop(51) = {40, 41, 42, 47, -32, -31, -45};
 Plane Surface(3) = {51};
 Physical Surface(zone_residus_boues) = {3};
 
-
 Line Loop(52) = {43, 40, 41, 42, -46, 23, 24, 25};
 Plane Surface(4) = {52};
 Physical Surface(zone_residus_sable) = {4};
+
+// les limites
+
+Physical Line(CL_g) = {1, 2};
+Physical Line(CL_d) = {16, 14, 15, 13};
+// Physical Line(CL_h) = {11, 12, 10, 9, 8, 6, 7, 5, 4, 3};//+
+Physical Line(CL_h) = {3, 4, 5, 6, 7, 8, 9, 10, 11, 12};

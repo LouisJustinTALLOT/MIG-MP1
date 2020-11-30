@@ -4,7 +4,7 @@
 # Geometry and hydrogeology
 # -------------------------
 
-domain = 0,300 0,395 21,394 36,392 46,390 91,380 109,376 121,375 199,368 206,367 270,358 286,356 327,356 390,351 430,350 430,300 m
+# domain = 0,300 0,395 21,394 36,392 46,390 91,380 109,376 121,375 199,368 206,367 270,358 286,356 327,356 390,351 430,350 430,300 m
 #domain = 0,300 0,395 21,394 36,392 46,390 46,358 121,358 121,375 199,368 206,367 270,358 286,356 327,356 390,351 430,350 430,300 m
 
 
@@ -31,17 +31,15 @@ flow-regime = saturated, stationary
 zone 1001 {
   head = 360 m
   porosity = 0.03
-  permeability = 1e-7 m/s
-  # geometry = polygon 0,300 0,395 21,394 36,392 46,390 91,380 109,376 121,375 199,368 206,367 270,358 286,356 327,356 390,351 430,350 430,300 m, nodes = 200,100                 
-  # geometry = polygon 0,300 0,395 21,394 36,392 46,390 46,358 121,358 121,375 199,368 206,367 270,358 286,356 327,356 390,351 430,350 430,300 m , nodes = 304,62 overgrid = disabled  
+  permeability = 1e-7,1e-7,0 m/s 
   geochem = chimie_granite
 }
 
 zone 1002 {
   head = 360 m
   porosity = 0.05
-  permeability = 5.5e-6,5e-7,0 m/s
-  # geometry = polygon 91,355 91,357, 199,363 270,351 430,341 430,337 270,337 199,338 m, nodes = 100,10 overgrid = on
+  permeability = 5e-7,5e-6,0 m/s
+  # permeability = 5e-6 m/s
   geochem = chimie_granite_frac
 }
 
@@ -49,28 +47,31 @@ zone 1003 {
   head = 370 m
   porosity = 0.1
   permeability = 1e-5,1e-4,0 m/s
+  # permeability = 5e-4 m/s
   geochem = chimie_steriles
 }
 
 zone 1004 {
   head = 360 m
   porosity = 0.2
-  permeability = 1e-5 m/s
+  permeability = 5e-4,5e-4,0 m/s
   geochem = chimie_residus_sable
 }
 
 zone 1005 {
   head = 360 m
   porosity = 0.2
-  permeability = 1e-5 m/s
+  permeability = 1e-5,1e-5,0 m/s
   geochem = chimie_residus_boues
 }
 
 boundary 2001 {
   coordinates = 0,300 0,370 m
-  # transport-condition = flux using left
+ 
   # flow-condition = constant-flow at 0.5,0 m/hr
   flow-condition = constant-head at 370 m
+  # flow-constant-concentration = constant-head at 370 m
+  transport-condition = constant-concentration using left
   # modify at 5 h, transport-condition = flux using injection_base
   # modify at X 100 d, flow-condition =
 }
@@ -98,18 +99,28 @@ boundary 2003 {
 exclude gases, minerals
 
 unit left {
-  tot T1(aq) = 1 umol/l
+  # tot T1(aq) = 1 umol/l
 }
 unit right {
-  tot T1(aq) = 1 umol/l
+  # tot T1(aq) = 1 umol/l
 }
 unit top {
   tot Tpluie(aq) = 1 umol/l
+
+  tot Na[+] = 1 mmol/L
+  tot Cl[-] = 1 mmol/L
+  fug CO2(g) = 0.001
+  tot Ca[2+] = 1 mmol/L
+  tot Mg[2+] = 1 mmol/L
+  tot SO4[2-] = 1 mmol/L
+  # tot Si(OH)4(aq) = 1 mmol/L
+
 }
 
 unit chimie_residus_sable {
   # pH = 7
-  tot Tresidus(aq) = 1 umol/l
+  # tot Tresidus(aq) = 1 umol/l
+  mineral Residues = 1 mol/l
   # mineral Sand = 8 kg/l
   
   tot Na[+] = 1 mmol/L
@@ -128,8 +139,10 @@ unit chimie_residus_sable {
 
 unit chimie_residus_boues {
   # pH = 7
-  tot Tresidus(aq) = 1 umol/l
+  # tot Tresidus(aq) = 1 umol/l
+  mineral Residues = 1 mol/l
   # mineral Sand = 8 kg/l
+
   tot Na[+] = 0.1 mmol/L
   tot Cl[-] = 0.1 mmol/L
   mineral Microcline = 29.5 g/L
@@ -145,6 +158,12 @@ unit chimie_residus_boues {
 unit chimie_steriles {
   # pH = 7
   tot Tsteriles(aq) = 1 umol/l
+  fug CO2(g) = 0.001
+  mineral Quartz = 557 g/L
+  tot Na[+] = 1 mmol/L
+  tot Cl[-] = 1 mmol/L
+  tot Si(OH)4(aq) = 10 mg/l
+
 }
 
 unit chimie_granite {
@@ -170,15 +189,44 @@ extend mineral Ferrihydrite {
   surface = 0.1 m2/g
 }
 
+extend mineral Montmorillonite-Ca {
+  kinetics {
+    rate = -1.2e-15 mol/m2/s
+    area = Montmorillonite-Ca
+    y-term, species = Montmorillonite-Ca
+    w-term {
+      species = H[+]
+      power = 0.22
+    }
+  }
+  kinetics {
+    rate = 1.9e-15 mol/m2/s
+    area = Montmorillonite-Ca
+    y-term, species = Montmorillonite-Ca
+    w-term {
+      species = H[+]
+      power = 0.22
+    }
+  }
+}
+
+
 exclude (UO2)11(CO3)6(OH)12[2-], (UO2)3(CO3)6[6-], U(CO3)5[6-], S3O6[2-], S2[2-], S4[2-], S5[2-], S6[2-], S3[2-], S3O6[2-] 
 exclude Mg2UO2(CO3)3(aq), MgUO2(CO3)3[2-], UO2(CO3)3[4-], Ca2UO2(CO3)3(aq), CaUO2(CO3)3[2-], (UO2)3O(OH)2(HCO3)[+], UO2(H2PO4)(H3PO4)[+]
+exclude BaRaSO4
 
-
+# define basis T1(aq)
 define basis Tresidus(aq)
 define basis Tgranite(aq)
 define basis Tsteriles(aq)
 define basis Tpluie(aq)
 define basis Tgfrac(aq)
+
+define mineral Residues {
+  composition = 1 Tresidus(aq)
+  logK = 6
+}
+
 
 # extend surface-sites Sand(Cs), logK = 2.5
 
@@ -186,17 +234,18 @@ define basis Tgfrac(aq)
 # ---------------------
 duration = 25 y
 timestep = variable {
- start = 1 d
- courant-factor = 350
+  minimum = 1 h
+  start = 2 h 
+ courant-factor = 50
 }
  
 # Output specifications
 # ---------------------
-output = modele_12_no1
+output = modele_12_no5
 output-format = res, vtk
 sample = 50
  
-select T1(aq) in umol/l
+# select T1(aq) in umol/l
 select Tresidus(aq) in umol/l
 select Tgranite(aq) in umol/l
 select Tsteriles(aq) in umol/l
@@ -204,10 +253,12 @@ select Tpluie(aq) in umol/l
 select Tgfrac(aq) in umol/l
 select head
 select permeability
+select x-permeability
+select y-permeability
 select porosity 
 select x-flowrate in m/s
 select y-flowrate in m/s
-select aqueous{UO2[2+]}, fixed{UO2[2+]}, mineral{UO2[2+]} in umol/L
+# select aqueous{UO2[2+]}, fixed{UO2[2+]}, mineral{UO2[2+]} in umol/L
 select pH
 select minerals in mg/l
 

@@ -1,0 +1,80 @@
+# MIG 2020 - MP1
+# Modele numero 11
+
+# Geometry and hydrogeology
+# -------------------------
+# domain = 0,0 0.1,0 0.1,0.01 0,0.01 m
+domain = 0,0 10,0 10,10 0,10 m
+# darcy-velocity = 0.5 cm/hr
+# dispersivity = 2.5 mm
+# diffusion-coeff = 1e-9 m2/s
+porosity = 0.3
+permeability = 1e-5 m/s
+flow-regime = saturated, stationary
+solver-regime = vertex
+grid-regime = vertex modele-11.msh
+
+
+zone 11 {
+  # geometry = rectangle 0.05,0.005,0.1,0.01 m, nodes = 50,1
+  # geometry = rectangle 5,5 10,10 m
+  geochem = chimie_sand
+}
+# boundary 12 {
+#   coordinates = 0,0 0,10 m
+#   transport-condition = flux using left
+#   # flow-condition = constant-flow at 0.5,0 m/y
+#   flow-condition = constant-head at 2 m
+#   # modify at 5 h, transport-condition = flux using injection_base
+# }
+# boundary 13 {
+#   coordinates = 10,0 10,10 m
+#   flow-condition = constant-head at 1 m
+
+# }
+# Geochemistry
+# ------------
+unit left {
+
+  tot T1(aq) = 1 umol/l
+
+}
+unit right {
+
+  tot T1(aq) = 1 umol/l
+
+}
+
+unit chimie_sand {
+  pH = 7
+
+  tot T2(aq) = 1 umol/l
+  mineral Sand = 8 kg/l
+}
+
+define basis T2(aq)
+
+database = form_cig.tdb
+# extend surface-sites Sand(Cs), logK = 2.5
+
+# Simulation parameters
+# ---------------------
+duration = 20 h
+timestep = variable {
+ start = 50 s
+ courant-factor = 3.5
+}
+ 
+# Output specifications
+# ---------------------
+output = modele_11_no1
+output-format = res, vtk
+sample = 20
+ 
+select T1(aq) in umol/l
+select T2(aq) in umol/l
+select x-flowrate in m/s
+
+
+# select aqueous{Cs[+]}, fixed{Cs[+]} in umol/l
+# select aqueous{Na[+]}, fixed{Na[+]} in umol/l

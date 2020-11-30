@@ -1,0 +1,109 @@
+## Test de diffusion pure avec le formalisme tenseur (r3lib)
+## transport advectif-dispersif, CL dirichlet, 2 zones
+## V Lagneau - oct 2014
+## ---------------------------------------------------------
+database = ctdp.tdb
+
+output-format = vtk
+solver-regime = vertex
+grid-regime = vertex test.msh
+
+storage = 1e-2
+dispersivity = .5,.05 m
+	
+flow-regime = saturated, stat
+
+#break
+# Geometry definition
+# -------------------
+domain = 0,0  2,0  2,2  0,2 m
+
+zone 1001 { # sol
+  perm = 1e-4 m/s
+  porosity      = 0.25
+  diff.coeff   = 1e-10 m2/s
+  geochem = ch_A1
+  head = 0
+}
+zone 1002 { # residu
+  perm = 1e-4 m/s
+  porosity      = 0.25
+  diff.coeff   = 1e-10 m2/s
+  geochem = ch_A2
+  head = 0
+}
+zone 1003 { # fract
+  perm = 1e-5 m/s
+  porosity      = 0.1
+  diff.coeff   = 1e-10 m2/s
+  geochem = ch_A3
+  head = 0
+}
+zone 1004 { # granite
+  perm = 1e-6 m/s
+  porosity      = 0.03
+  diff.coeff   = 1e-10 m2/s
+  geochem = ch_A4
+  head = 0
+}
+
+# Boundary definition
+# -------------------
+boundary 2001 { # gauche
+  coordinates = 2,0 2,0.2
+#  flow-condition = constant-head at 400 m
+  flow-condition = constant-flow at 100,0 mm/d using ch_B
+  transport-condition = constant-conc using ch_A
+}
+boundary 2002 {  # droite
+  coordinates = 0,0 0,0.2
+#  flow-condition = constant-head at 398 m
+  flow-condition = constant-flow at 100,0 mm/d
+}
+boundary 2003 {  # surface
+  coordinates = 0,0 0,0.2
+#  flow-condition = constant-flow at 0,-1000 mm/d using ch_B
+#	  transport-condition = constant-conc using ch_A
+}
+## Geochemical unit definitions:
+##------------------------------
+unit ch_A {
+  tot A = 5 umolal
+}
+unit ch_A1 {
+  tot A = 1 umolal
+}
+unit ch_A2 {
+  tot A = 2 umolal
+}
+unit ch_A3 {
+  tot A = 3 umolal
+}
+unit ch_A4 {
+  tot A = 4 umolal
+}
+unit ch_B {
+  tot B = 1 umolal
+}
+
+exclude minerals, colloids
+define basis A
+define basis B
+
+# Time specification
+# ------------------
+duration = 1 y
+timestep = variable {
+	start = 1 d
+	courant = 100
+}
+
+# Model specification
+# -------------------
+verbose = enabled
+samples = 20
+select head
+select x-flowrate, y-flowrate
+select A,B in umolal
+select permeability
+

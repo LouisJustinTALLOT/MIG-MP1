@@ -1,0 +1,7 @@
+# R2D2 boundary information
+0	riv_verraux	446	300	446	349
+1	left	0	395	0	300
+2	surface_1	30	395	0	395
+3	surface_2	97	380	30	395
+4	surface_3	318	356	97	380
+5	surface_4	446	349	318	356

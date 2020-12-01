@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<VTKFile type="Collection" version="0.1" byte_order="LittleEndian" compressor="vtkZLibDataCompressor">
+  <Collection>
+    <DataSet timestep="0" group="" part="0" file="sample_0.vtu" />
+    <DataSet timestep="0.0833333" group="" part="0" file="sample_1.vtu" />
+    <DataSet timestep="0.166667" group="" part="0" file="sample_2.vtu" />
+    <DataSet timestep="0.25" group="" part="0" file="sample_3.vtu" />
+    <DataSet timestep="0.333333" group="" part="0" file="sample_4.vtu" />
+    <DataSet timestep="0.416667" group="" part="0" file="sample_5.vtu" />
+  </Collection>
+</VTKFile>

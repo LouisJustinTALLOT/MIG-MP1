@@ -221,7 +221,7 @@ extend mineral Montmorillonite-Ca {
 
 exclude (UO2)11(CO3)6(OH)12[2-], (UO2)3(CO3)6[6-], U(CO3)5[6-], S3O6[2-], S2[2-], S4[2-], S5[2-], S6[2-], S3[2-], S3O6[2-] 
 exclude Mg2UO2(CO3)3(aq), MgUO2(CO3)3[2-], UO2(CO3)3[4-], Ca2UO2(CO3)3(aq), CaUO2(CO3)3[2-], (UO2)3O(OH)2(HCO3)[+], UO2(H2PO4)(H3PO4)[+]
-exclude BaRaSO4
+# exclude BaRaSO4
 
 # define basis T1(aq)
 define basis Tresidus(aq)
@@ -248,7 +248,7 @@ timestep = variable {
  
 # Output specifications
 # ---------------------
-output = modele_13_no6
+output = modele_13_no8
 output-format = res, vtk
 sample = 100
  

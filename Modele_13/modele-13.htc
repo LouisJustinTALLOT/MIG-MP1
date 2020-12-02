@@ -110,12 +110,12 @@ exclude gases, minerals
 unit top {
   tot Tpluie(aq) = 1 umol/l
 
-  tot Na[+] = 1 mmol/L
-  tot Cl[-] = 1 mmol/L
-  fug CO2(g) = 0.001
-  tot Ca[2+] = 1 mmol/L
-  tot Mg[2+] = 1 mmol/L
-  tot SO4[2-] = 1 mmol/L
+  tot Na[+] = 1 umol/L
+  tot Cl[-] = 1 umol/L
+  fug CO2(g) = 400e-6
+  tot Ca[2+] = 1 umol/L
+  tot Mg[2+] = 1 umol/L
+  tot SO4[2-] = 1 umol/L
   # tot Si(OH)4(aq) = 1 mmol/L
 }
 
@@ -160,12 +160,20 @@ unit chimie_residus_boues {
 unit chimie_steriles {
   # pH = 7
   tot Tsteriles(aq) = 1 umol/l
-  fug CO2(g) = 0.001
+  fug CO2(g) = 400e-6
   # mineral Quartz = 557 g/L
-  tot Na[+] = 1 mmol/L
-  tot Cl[-] = 1 mmol/L
-  tot Si(OH)4(aq) = 10 mg/l
-
+  tot Na[+] = 1 umol/L
+  tot Cl[-] = 1 umol/L
+  # tot Ca[2+] = 1 umol/L
+  # tot Mg[2+] = 1 umol/L
+  # tot SO4[2-] = 1 umol/L
+  # tot Si(OH)4(aq) = 10 mg/l
+  mineral Quartz = 1 kg/L  
+  mineral Microcline = 29.5 g/L
+  mineral Ferrihydrite = 66.9 g/l, surface = 0.1 m2/g
+  mineral Gypse = 20 g/l
+  mineral Montmorillonite-Ca = 30 g/L 
+  # mineral Kaolinite = 20 g/L
 }
 
 unit chimie_granite {
@@ -175,7 +183,7 @@ unit chimie_granite {
   fug CO2(g) = 0.001
   mineral Quartz = 1 kg/L 
   # mineral Microcline = 29.5 g/L
-  # mineral Ferrihydrite = 66.9 g/L, surface = 0.1 m2/g 
+  mineral Ferrihydrite = 66.9 g/L, surface = 0.1 m2/g 
 }
 
 unit chimie_granite_frac {
@@ -185,7 +193,7 @@ unit chimie_granite_frac {
   tot Cl[-] = 1 mmol/L
   fug CO2(g) = 0.001
   mineral Quartz = 1 kg/L  
-  # mineral Microcline = 1 kg/L
+  # mineral Microcline = 30 g/L
   # mineral Ferrihydrite = 66.9 g/l, surface = 0.1 m2/g
 }
 
@@ -240,15 +248,16 @@ define mineral Residues {
 
 # Simulation parameters
 # ---------------------
-duration = 100 y #25 y
+duration = 1 y #25 y
 timestep = variable {
- start = 2 h 
+ start = 0.1 h
+ maximum = 5 d
  courant-factor = 50
 }
  
 # Output specifications
 # ---------------------
-output = modele_13_no8
+output = modele_13_no9
 output-format = res, vtk
 sample = 100
  

@@ -1,0 +1,103 @@
+# MIG 2020 - MP1
+# Modele 1D no 1
+
+# Geometry and hydrogeology
+# -------------------------
+
+domain = 0,0 10,0 10,2 0,2 m
+
+
+# darcy-velocity = 0.5 cm/hr
+# dispersivity = 2.5 mm
+diffusion-coeff = 1e-9 m2/s
+porosity = 0.3
+#permeability = 1e-5 m/s
+flow-regime = saturated, trans 
+# nodes = 2000
+
+zone 1 {
+  geometry = rectangle 2.5,1 5,2 m, nodes = 50,1
+  permeability = 1e-4 m/                 
+  geochem = chimie_granite
+}
+
+zone 2 {
+  geometry = rectangle 7.5,1 5,2 m, nodes = 50,1
+  permeability = 1e-6 m/                 
+  geochem = chimie_granite
+}
+
+
+boundary left {
+  coordinates = 0,0 0,2 m
+  transport-condition = flux using left
+  # flow-condition = constant-flow at 0.5,0 m/hr
+  flow-condition = constant-head at 350 m
+  # modify at 5 h, transport-condition = flux using injection_base
+}
+boundary right {
+  coordinates = 10,0 10,2 m
+  flow-condition = constant-head at 300 m
+  # flow-condition = constant-head at 50 m
+}
+
+# Geochemistry
+# ------------
+unit left {
+  tot T1(aq) = 1 umol/l
+}
+unit right {
+  tot T1(aq) = 1 umol/l
+}
+
+#unit chimie_residus {
+#  # pH = 7
+#  tot T2(aq) = 1 umol/l
+#  mineral Sand = 8 kg/l
+#  #conc Sand = 2690 kg/m3
+#}
+
+#unit chimie_steriles {
+#  # pH = 7
+#  tot T4(aq) = 1 umol/l
+#  mineral Sand = 8 kg/l
+#  #conc Sand = 2690 kg/m3
+#}
+unit chimie_granite {
+  tot T3(aq) = 1 umol/l
+  # conc Quartz = 2648.29 kg/m3
+  mineral Quartz = 8 kg/l
+}
+
+#define basis T2(aq)
+define basis T3(aq)
+#define basis T4(aq)
+
+database = form_cig.tdb
+# extend surface-sites Sand(Cs), logK = 2.5
+
+# Simulation parameters
+# ---------------------
+duration = 100 h
+timestep = variable {
+ start = 1 h
+ # courant-factor = 3.5
+}
+ 
+# Output specifications
+# ---------------------
+output = 1D-serie-4
+output-format = res, vtk
+sample = 500
+ 
+select T1(aq) in umol/l
+#select T2(aq) in umol/l
+select T3(aq) in umol/l
+#select T4(aq) in umol/l
+select x-flowrate in m/s
+#select y-flowrate in m/s
+
+  
+
+# select aqueous{Cs[+]}, fixed{Cs[+]} in umol/l
+# select aqueous{Na[+]}, fixed{Na[+]} in umol/l

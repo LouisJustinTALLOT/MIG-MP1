@@ -1,0 +1,428 @@
+CHESS version  : 3.13.0-r708
+Session date   : Fri Dec  4 09:30:11 2020
+This file      : modele_final_100_ans_hydro/HYTEC.chem
+Input file     : modele-final-100ans-hydro.htc
+Database file  : prodata1104_utf8_MIG_test.tdb
+
+Activity  model: truncated-davies
+EOS       model: perfect
+Interface model: surface-complexation, double-layer
+
+9 species were considered for the equilibrium calculations:
+-------------------------------------------------------------
+name:                 mole-weight:     name:                 mole-weight:
+H2O                   0.0180153      | H[+]                  0.00100794   
+Tpluie(aq)            0.1            | Tresidus(aq)          0.1          
+Tsteriles(aq)         0.1            | Tgranite(aq)          0.1          
+Tgfrac(aq)            0.1            | H2O(g)                0.0180153    
+OH[-]                 0.0170073    
+
+1 solids were considered for the equilibrium calculations
+-------------------------------------------------------------
+name:                 mole-weight:     name:                 mole-weight:
+Residues              0.1          
+
+==============================================================================
+
+Calculating initial equilibrium for unit 'top'...
+...success!
+==============================================================================
+
+pH                       : 7
+ionic strength           : 1.00117e-07
+temperature              : 25          Celsius
+electrical imbalance     : 9.97e-26    eq/l
+electroneutrality        : 1          
+carbonate alkalinity     : 0           eq/l
+solvent activity         : 1
+solvent mass             : 1000        g
+total dissolved solids   : 0.0001021   g/kg
+solution mass            : 1000        g
+solution density         : 997         g/l
+solution volume3         : 1.003       liter
+system pressure          : 1           atm
+
+Aqueous species:
+----------------   ---molal----  ---mol/l----  ----ppm----   ---g/l----    
+Tpluie(aq)         1.003e-06     1e-06         0.1003        0.0001        
+OH[-]              1.0012e-07    9.9816e-08    0.0017027     1.6976e-06    
+H[+]               1.0012e-07    9.9816e-08    0.00010091    1.0061e-07    
+Tgranite(aq)       1e-25         9.97e-26      1e-20         9.97e-24      
+Tresidus(aq)       1e-25         9.97e-26      1e-20         9.97e-24      
+Tgfrac(aq)         1e-25         9.97e-26      1e-20         9.97e-24      
+Tsteriles(aq)      1e-25         9.97e-26      1e-20         9.97e-24      
+
+Total concentrations*:
+---------------------   ---molal----  ---mol/l----  ----g/l----   ---grams---   
+H2O                    55.18         994           997          
+Tpluie(aq)             1e-06         0.0001        0.0001003    
+------
+*Note: these values are 'mathematical' total concentrations, as defined
+       by the methodology applied. They can be negative. See the technical
+       documents about CHESS for more detailed information on this matter.
+
+Cumulative concentrations (molal):
+----------------------------------
+                   aqueous    mineral    colloidal  organic    fixed
+H[+]               1.001e-07  0          0          0          0          
+Tpluie(aq)         1.003e-06  0          0          0          0          
+
+Cumulative concentrations (molar):
+----------------------------------
+                   aqueous    mineral    colloidal  organic    fixed
+H[+]               9.982e-08  0          0          0          0          
+Tpluie(aq)         1e-06      0          0          0          0          
+
+Cumulative concentrations (gram/l):
+-----------------------------------
+                   aqueous    mineral    colloidal  organic    fixed
+H[+]               1.006e-07  0          0          0          0          
+Tpluie(aq)         0.0001     0          0          0          0          
+
+Potential fugacities of gases:
+------------------------------
+H2O(g)             1e-25        
+
+Saturation indices (down to -300) of solids:
+--------------------------------------------
+Residues           -19          
+
+==============================================================================
+Calculating initial equilibrium for unit 'chimie_residus_sable'...
+...success!
+==============================================================================
+
+pH                       : 7
+ionic strength           : 1.001e-07
+temperature              : 25          Celsius
+electrical imbalance     : 9.97e-26    eq/l
+electroneutrality        : 1          
+carbonate alkalinity     : 0           eq/l
+solvent activity         : 1
+solvent mass             : 1000        g
+total dissolved solids   : 0.0001018   g/kg
+solution mass            : 1000        g
+solution density         : 997         g/l
+solution volume3         : 1.003       liter
+mineral volume           : 0.033434    liter
+system pressure          : 1           atm
+
+Aqueous species:
+----------------   ---molal----  ---mol/l----  ----ppm----   ---g/l----    
+Tresidus(aq)       1e-06         9.97e-07      0.1           9.97e-05      
+OH[-]              1.0012e-07    9.9816e-08    0.0017027     1.6976e-06    
+H[+]               1.0012e-07    9.9816e-08    0.00010091    1.0061e-07    
+Tgfrac(aq)         1e-25         9.97e-26      1e-20         9.97e-24      
+Tsteriles(aq)      1e-25         9.97e-26      1e-20         9.97e-24      
+Tgranite(aq)       1e-25         9.97e-26      1e-20         9.97e-24      
+Tpluie(aq)         1e-25         9.97e-26      1e-20         9.97e-24      
+
+Solids:
+----------------   ---molal----  ---mol/l----  ----ppm----   ---g/l----    
+Residues           1.003         1             1.003e+05     100           
+
+Total concentrations*:
+---------------------   ---molal----  ---mol/l----  ----g/l----   ---grams---   
+H2O                    55.18         994           997          
+Tresidus(aq)           1             100           100.3        
+------
+*Note: these values are 'mathematical' total concentrations, as defined
+       by the methodology applied. They can be negative. See the technical
+       documents about CHESS for more detailed information on this matter.
+
+Surfaces and volumes:
+----------------   ---m2/mol---  ---m2/g----   ---m2/l----   ---liter---   
+Residues           0.997         0.00997       0.997         0.03343      
+
+Cumulative concentrations (molal):
+----------------------------------
+                   aqueous    mineral    colloidal  organic    fixed
+H[+]               1.001e-07  0          0          0          0          
+Tresidus(aq)       1e-06      1.003      0          0          0          
+
+Cumulative concentrations (molar):
+----------------------------------
+                   aqueous    mineral    colloidal  organic    fixed
+H[+]               9.982e-08  0          0          0          0          
+Tresidus(aq)       9.97e-07   1          0          0          0          
+
+Cumulative concentrations (gram/l):
+-----------------------------------
+                   aqueous    mineral    colloidal  organic    fixed
+H[+]               1.006e-07  0          0          0          0          
+Tresidus(aq)       9.97e-05   100        0          0          0          
+
+Potential fugacities of gases:
+------------------------------
+H2O(g)             1e-25        
+
+Saturation indices (down to -300) of solids:
+--------------------------------------------
+Residues            0            
+
+==============================================================================
+Calculating initial equilibrium for unit 'chimie_residus_boues'...
+...success!
+==============================================================================
+
+pH                       : 7
+ionic strength           : 1.001e-07
+temperature              : 25          Celsius
+electrical imbalance     : 9.97e-26    eq/l
+electroneutrality        : 1          
+carbonate alkalinity     : 0           eq/l
+solvent activity         : 1
+solvent mass             : 1000        g
+total dissolved solids   : 0.0001018   g/kg
+solution mass            : 1000        g
+solution density         : 997         g/l
+solution volume3         : 1.003       liter
+mineral volume           : 0.033434    liter
+system pressure          : 1           atm
+
+Aqueous species:
+----------------   ---molal----  ---mol/l----  ----ppm----   ---g/l----    
+Tresidus(aq)       1e-06         9.97e-07      0.1           9.97e-05      
+OH[-]              1.0012e-07    9.9816e-08    0.0017027     1.6976e-06    
+H[+]               1.0012e-07    9.9816e-08    0.00010091    1.0061e-07    
+Tgfrac(aq)         1e-25         9.97e-26      1e-20         9.97e-24      
+Tsteriles(aq)      1e-25         9.97e-26      1e-20         9.97e-24      
+Tgranite(aq)       1e-25         9.97e-26      1e-20         9.97e-24      
+Tpluie(aq)         1e-25         9.97e-26      1e-20         9.97e-24      
+
+Solids:
+----------------   ---molal----  ---mol/l----  ----ppm----   ---g/l----    
+Residues           1.003         1             1.003e+05     100           
+
+Total concentrations*:
+---------------------   ---molal----  ---mol/l----  ----g/l----   ---grams---   
+H2O                    55.18         994           997          
+Tresidus(aq)           1             100           100.3        
+------
+*Note: these values are 'mathematical' total concentrations, as defined
+       by the methodology applied. They can be negative. See the technical
+       documents about CHESS for more detailed information on this matter.
+
+Surfaces and volumes:
+----------------   ---m2/mol---  ---m2/g----   ---m2/l----   ---liter---   
+Residues           0.997         0.00997       0.997         0.03343      
+
+Cumulative concentrations (molal):
+----------------------------------
+                   aqueous    mineral    colloidal  organic    fixed
+H[+]               1.001e-07  0          0          0          0          
+Tresidus(aq)       1e-06      1.003      0          0          0          
+
+Cumulative concentrations (molar):
+----------------------------------
+                   aqueous    mineral    colloidal  organic    fixed
+H[+]               9.982e-08  0          0          0          0          
+Tresidus(aq)       9.97e-07   1          0          0          0          
+
+Cumulative concentrations (gram/l):
+-----------------------------------
+                   aqueous    mineral    colloidal  organic    fixed
+H[+]               1.006e-07  0          0          0          0          
+Tresidus(aq)       9.97e-05   100        0          0          0          
+
+Potential fugacities of gases:
+------------------------------
+H2O(g)             1e-25        
+
+Saturation indices (down to -300) of solids:
+--------------------------------------------
+Residues            0            
+
+==============================================================================
+Calculating initial equilibrium for unit 'chimie_steriles'...
+...success!
+==============================================================================
+
+pH                       : 7
+ionic strength           : 1.001e-07
+temperature              : 25          Celsius
+electrical imbalance     : 9.97e-26    eq/l
+electroneutrality        : 1          
+carbonate alkalinity     : 0           eq/l
+solvent activity         : 1
+solvent mass             : 1000        g
+total dissolved solids   : 0.0001021   g/kg
+solution mass            : 1000        g
+solution density         : 997         g/l
+solution volume3         : 1.003       liter
+system pressure          : 1           atm
+
+Aqueous species:
+----------------   ---molal----  ---mol/l----  ----ppm----   ---g/l----    
+Tsteriles(aq)      1.003e-06     1e-06         0.1003        0.0001        
+OH[-]              1.0012e-07    9.9816e-08    0.0017027     1.6976e-06    
+H[+]               1.0012e-07    9.9816e-08    0.00010091    1.0061e-07    
+Tgranite(aq)       1e-25         9.97e-26      1e-20         9.97e-24      
+Tresidus(aq)       1e-25         9.97e-26      1e-20         9.97e-24      
+Tgfrac(aq)         1e-25         9.97e-26      1e-20         9.97e-24      
+Tpluie(aq)         1e-25         9.97e-26      1e-20         9.97e-24      
+
+Total concentrations*:
+---------------------   ---molal----  ---mol/l----  ----g/l----   ---grams---   
+H2O                    55.18         994           997          
+Tsteriles(aq)          1e-06         0.0001        0.0001003    
+------
+*Note: these values are 'mathematical' total concentrations, as defined
+       by the methodology applied. They can be negative. See the technical
+       documents about CHESS for more detailed information on this matter.
+
+Cumulative concentrations (molal):
+----------------------------------
+                   aqueous    mineral    colloidal  organic    fixed
+H[+]               1.001e-07  0          0          0          0          
+Tsteriles(aq)      1.003e-06  0          0          0          0          
+
+Cumulative concentrations (molar):
+----------------------------------
+                   aqueous    mineral    colloidal  organic    fixed
+H[+]               9.982e-08  0          0          0          0          
+Tsteriles(aq)      1e-06      0          0          0          0          
+
+Cumulative concentrations (gram/l):
+-----------------------------------
+                   aqueous    mineral    colloidal  organic    fixed
+H[+]               1.006e-07  0          0          0          0          
+Tsteriles(aq)      0.0001     0          0          0          0          
+
+Potential fugacities of gases:
+------------------------------
+H2O(g)             1e-25        
+
+Saturation indices (down to -300) of solids:
+--------------------------------------------
+Residues           -19          
+
+==============================================================================
+Calculating initial equilibrium for unit 'chimie_granite'...
+...success!
+==============================================================================
+
+pH                       : 7
+ionic strength           : 1.001e-07
+temperature              : 25          Celsius
+electrical imbalance     : 9.97e-26    eq/l
+electroneutrality        : 1          
+carbonate alkalinity     : 0           eq/l
+solvent activity         : 1
+solvent mass             : 1000        g
+total dissolved solids   : 0.0001021   g/kg
+solution mass            : 1000        g
+solution density         : 997         g/l
+solution volume3         : 1.003       liter
+system pressure          : 1           atm
+
+Aqueous species:
+----------------   ---molal----  ---mol/l----  ----ppm----   ---g/l----    
+Tgranite(aq)       1.003e-06     1e-06         0.1003        0.0001        
+OH[-]              1.0012e-07    9.9816e-08    0.0017027     1.6976e-06    
+H[+]               1.0012e-07    9.9816e-08    0.00010091    1.0061e-07    
+Tresidus(aq)       1e-25         9.97e-26      1e-20         9.97e-24      
+Tgfrac(aq)         1e-25         9.97e-26      1e-20         9.97e-24      
+Tpluie(aq)         1e-25         9.97e-26      1e-20         9.97e-24      
+Tsteriles(aq)      1e-25         9.97e-26      1e-20         9.97e-24      
+
+Total concentrations*:
+---------------------   ---molal----  ---mol/l----  ----g/l----   ---grams---   
+H2O                    55.18         994           997          
+Tgranite(aq)           1e-06         0.0001        0.0001003    
+------
+*Note: these values are 'mathematical' total concentrations, as defined
+       by the methodology applied. They can be negative. See the technical
+       documents about CHESS for more detailed information on this matter.
+
+Cumulative concentrations (molal):
+----------------------------------
+                   aqueous    mineral    colloidal  organic    fixed
+H[+]               1.001e-07  0          0          0          0          
+Tgranite(aq)       1.003e-06  0          0          0          0          
+
+Cumulative concentrations (molar):
+----------------------------------
+                   aqueous    mineral    colloidal  organic    fixed
+H[+]               9.982e-08  0          0          0          0          
+Tgranite(aq)       1e-06      0          0          0          0          
+
+Cumulative concentrations (gram/l):
+-----------------------------------
+                   aqueous    mineral    colloidal  organic    fixed
+H[+]               1.006e-07  0          0          0          0          
+Tgranite(aq)       0.0001     0          0          0          0          
+
+Potential fugacities of gases:
+------------------------------
+H2O(g)             1e-25        
+
+Saturation indices (down to -300) of solids:
+--------------------------------------------
+Residues           -19          
+
+==============================================================================
+Calculating initial equilibrium for unit 'chimie_granite_frac'...
+...success!
+==============================================================================
+
+pH                       : 7
+ionic strength           : 1.001e-07
+temperature              : 25          Celsius
+electrical imbalance     : 9.97e-26    eq/l
+electroneutrality        : 1          
+carbonate alkalinity     : 0           eq/l
+solvent activity         : 1
+solvent mass             : 1000        g
+total dissolved solids   : 0.0001021   g/kg
+solution mass            : 1000        g
+solution density         : 997         g/l
+solution volume3         : 1.003       liter
+system pressure          : 1           atm
+
+Aqueous species:
+----------------   ---molal----  ---mol/l----  ----ppm----   ---g/l----    
+Tgfrac(aq)         1.003e-06     1e-06         0.1003        0.0001        
+OH[-]              1.0012e-07    9.9816e-08    0.0017027     1.6976e-06    
+H[+]               1.0012e-07    9.9816e-08    0.00010091    1.0061e-07    
+Tgranite(aq)       1e-25         9.97e-26      1e-20         9.97e-24      
+Tresidus(aq)       1e-25         9.97e-26      1e-20         9.97e-24      
+Tsteriles(aq)      1e-25         9.97e-26      1e-20         9.97e-24      
+Tpluie(aq)         1e-25         9.97e-26      1e-20         9.97e-24      
+
+Total concentrations*:
+---------------------   ---molal----  ---mol/l----  ----g/l----   ---grams---   
+H2O                    55.18         994           997          
+Tgfrac(aq)             1e-06         0.0001        0.0001003    
+------
+*Note: these values are 'mathematical' total concentrations, as defined
+       by the methodology applied. They can be negative. See the technical
+       documents about CHESS for more detailed information on this matter.
+
+Cumulative concentrations (molal):
+----------------------------------
+                   aqueous    mineral    colloidal  organic    fixed
+H[+]               1.001e-07  0          0          0          0          
+Tgfrac(aq)         1.003e-06  0          0          0          0          
+
+Cumulative concentrations (molar):
+----------------------------------
+                   aqueous    mineral    colloidal  organic    fixed
+H[+]               9.982e-08  0          0          0          0          
+Tgfrac(aq)         1e-06      0          0          0          0          
+
+Cumulative concentrations (gram/l):
+-----------------------------------
+                   aqueous    mineral    colloidal  organic    fixed
+H[+]               1.006e-07  0          0          0          0          
+Tgfrac(aq)         0.0001     0          0          0          0          
+
+Potential fugacities of gases:
+------------------------------
+H2O(g)             1e-25        
+
+Saturation indices (down to -300) of solids:
+--------------------------------------------
+Residues           -19          
+
+==============================================================================

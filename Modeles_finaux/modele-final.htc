@@ -195,18 +195,18 @@ define mineral Residues {
 
 # Simulation parameters
 # ---------------------
-duration = 1 y #25 y
+duration = 1 y 
 timestep = variable {
  start = 0.1 h
- maximum = 5 d
+ maximum = 15 d
  courant-factor = 50
 }
  
 # Output specifications
 # ---------------------
 output = modele_final_1_an_chimie
-output-format = res, vtk
-sample = 100
+output-format = vtk
+sample = 50
  
 select Tresidus(aq) in umol/l
 select Tgranite(aq) in umol/l
@@ -225,8 +225,8 @@ select aqueous{UO2[2+]}, fixed{UO2[2+]}, mineral{UO2[2+]} in umol/L
 select pH
 select minerals in mg/l
 # select aqueous{Ra[2+]} in umol/L
-select rate{Gypsum}, rate{Montmorillonite-Ca}, rate{Microcline}, rate{Ferrihydrite}
-select rate{Quartz}, rate{Autunite}, rate{BaSO4}, rate{RaSO4}
+select rate{Gypse}, rate{Montmorillonite-Ca}, rate{Microcline}, rate{Ferrihydrite}
+select rate{Quartz}, rate{Autunite}, rate{BaSO4(cr)}, rate{RaSO4(s)}
 select aqueous{SO4[2-]}, fixed{SO4[2-]}
 select aqueous{K[+]}, fixed{K[+]}
 select aqueous{Mg[2+]}, fixed{Mg[2+]}

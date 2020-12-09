@@ -198,15 +198,15 @@ define mineral Residues {
 duration = 25 y
 timestep = variable {
  start = 0.1 h
- maximum = 10 d
+ maximum = 20 d
  courant-factor = 50
 }
  
 # Output specifications
 # ---------------------
-output = modele_final_25_ans
-output-format = res, vtk
-sample = 100
+output = modele_final_25_ans_chimie
+output-format = vtk
+sample = 50
  
 select Tresidus(aq) in umol/l
 select Tgranite(aq) in umol/l
@@ -224,5 +224,18 @@ select y-flowrate in m/s
 select aqueous{UO2[2+]}, fixed{UO2[2+]}, mineral{UO2[2+]} in umol/L
 select pH
 select minerals in mg/l
-select aqueous{Ra[2+]} in umol/L
-
+# select aqueous{Ra[2+]} in umol/L
+select rate{Gypse}, rate{Montmorillonite-Ca}, rate{Microcline}, rate{Ferrihydrite}
+select rate{Quartz}, rate{Autunite}, rate{BaSO4(cr)}, rate{RaSO4(s)}
+select aqueous{SO4[2-]}, fixed{SO4[2-]}
+select aqueous{K[+]}, fixed{K[+]}
+select aqueous{Mg[2+]}, fixed{Mg[2+]}
+select aqueous{Ca[2+]}, fixed{Ca[2+]}
+select aqueous{Na[+]}, fixed{Na[+]}   
+select aqueous{Cl[-]}, fixed{Cl[-]}  
+select aqueous{H[+]}, fixed{H[+]}  
+select aqueous{Al[3+]}, fixed{Al[3+]}  
+select aqueous{Fe[3+]}, fixed{Fe[3+]}   
+select aqueous{Ba[2+]}, fixed{Ba[2+]}
+select aqueous{Ra[2+]}, fixed{Ra[2+]}
+select aqueous{PO4[3-]}, fixed{PO4[3-]}

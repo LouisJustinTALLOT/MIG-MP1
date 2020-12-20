@@ -28,3 +28,10 @@ Ce *repository* GitHub va contenir le code HYTEC développé dans le cadre de ce
 |`Modèle_Irina_2`|Modèle par Irina Sin avec le nouveau mailleur, et une zone partielle de granite fracturé|
 |`Test`|Fichiers de test, créés par Vincent Lagneau, pour le mailleur `vertex`|
 |`Test_2`|Fichiers de test, créés par Vincent Lagneau, pour le mailleur `vertex`|
+|`Modele_Louison_1D`|Premier modèle 1D Sophian Akkari et Louison Rapin|
+|`Modele_Sophian_1D`|Deuxième modèle 1D, pour vérifier la validité de leurs équations|
+|`ribiere`|Un modèle quasi final qu'Irina Sin a fait tourner|
+|`Modeles_finaux`|Pour la synthèse, regroupe les modèles finaux sur 1, 25, 100 ans|
+|`MP1_2Dsat_04`|Par le groupe radon|
+|`Topographie_du_site`|Les fichiers `.geo` et `.msh`|
+|`modele-final-25ans_Irina_pluies`|Le tout dernier modèle qui va servir pour faire les visualisations dans les rapport, où Irina Sin a rajouté les précipitations de Guillaume Vigne|

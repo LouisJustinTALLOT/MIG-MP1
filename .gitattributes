@@ -1,6 +1,0 @@
-modele_9_no1/HYTEC.res filter=lfs diff=lfs merge=lfs -text
-modele_9_no2/HYTEC.res filter=lfs diff=lfs merge=lfs -text
-modele_Guillaume_25ans_no1/HYTEC.res filter=lfs diff=lfs merge=lfs -text
-Modele_Guillaume_25ans/ filter=lfs diff=lfs merge=lfs -text
-Modele_Guillaume_25ans/modele_Guillaume_25ans_no1/HYTEC.res filter=lfs diff=lfs merge=lfs -text
-
